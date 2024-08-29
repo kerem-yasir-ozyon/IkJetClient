@@ -1,0 +1,100 @@
+﻿
+ @using IkJetApp.Areas.Personnel.Models.WorkOff
+@using IkJetApp.Enums
+@using Newtonsoft.Json
+
+@model List<WorkOffViewModel>
+
+@{
+    ViewData["Title"] = "İzin Talepleri";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni İzin Talebi Oluştur</a>
+</p>
+<link rel="stylesheet" href="~/css/customTable.css" />
+<div class="table-container theme-secondary">
+<table>
+    <thead>
+        <tr>
+            <th>Başlangıç Tarihi</th>
+            <th>Bitiş Tarihi</th>
+            <th>İzin Türü</th>
+            <th>Gün Sayısı</th>
+            <th>Onay Durumu</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@item.EndDate.ToShortDateString()</td>
+                <td>@item.WorkOfTypeDisplay</td>
+                <td>@item.RequestedLeaveDay</td>
+                <td>@item.ApprovalStatusDisplay</td>
+                <td>
+                    
+                    <a asp-area="Personnel" asp-controller="WorkOff" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning @(item.ApprovalStatus != ApprovalStatus.Pending ? "disabled" : "")">Düzenle</a>
+                    <button type="button" class="btn btn-danger" @(item.ApprovalStatus != ApprovalStatus.Pending ? "disabled" : "") onclick="confirmDelete('@Url.Action("Delete", "WorkOff", new { area = "Personnel", id = item.Id })')">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+
+
+
+<!-- Sweet Alert -->
+<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    function confirmDelete(deleteUrl) {
+        swal({
+            title: "Emin misiniz?",
+            text: "Bu işlemi geri alamazsınız!",
+            icon: "warning",
+            buttons: {
+                cancel: {
+                    text: "Vazgeç",
+                    value: null,
+                    visible: true,
+                    className: "btn btn-secondary",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: "Evet, sil!",
+                    value: true,
+                    visible: true,
+                    className: "btn btn-danger",
+                    closeModal: true
+                }
+            }
+        }).then((isConfirm) => {
+            if (isConfirm) {
+                window.location.href = deleteUrl;
+            }
+        });
+    }
+
+     @if (TempData["Message"] != null)
+    {
+        var Message = @Html.Raw(JsonConvert.SerializeObject(TempData["Message"].ToString()));
+        <text>
+            Swal.fire({
+                icon: 'info',
+                title: 'Bilgi',
+                text: @Message
+                            });
+        </text>
+
+
+    }
+</script>

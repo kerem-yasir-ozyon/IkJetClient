@@ -1,0 +1,252 @@
+﻿:root {
+    --primary-color: #2a2f45; /* Varsayılan renk */
+    --header-bg-color: #1a2035;
+    --row-hover-bg-color: #3c456a;
+    --cell-hover-bg-color: #555c7a;
+    --button-approve-bg-color: #28a745;
+    --button-reject-bg-color: #dc3545;
+}
+
+/* Renk temasını değiştirmek için HRManager için */
+.theme-primary {
+    --primary-color: #2a2f45;
+    --header-bg-color: #1a2035;
+    --row-hover-bg-color: #3c456a;
+    --cell-hover-bg-color: #555c7a;
+    --button-approve-bg-color: #28a745;
+    --button-reject-bg-color: #dc3545;
+}
+/*Personnel*/
+.theme-secondary {
+    --primary-color: #074173; /* Yeni ana renk */
+    --header-bg-color: #052B4C; /* Daha koyu bir ton, header için */
+    --row-hover-bg-color: #0A5A8E; /* Hover rengi, primary renkten daha açık */
+    --cell-hover-bg-color: #063A5D; /* Hücre hover rengi, primary renkten daha açık */
+    --button-approve-bg-color: #4B7A4A; /* Onay butonu için uyumlu renk */
+    --button-reject-bg-color: #C72E2E; /* Reddet butonu için uyumlu renk */
+}
+
+
+
+
+
+/*Admin*/
+.theme-tertiary {
+    --primary-color: #373A40; /* Ana renk olarak belirttiğiniz renk */
+    --header-bg-color: #2B2E33; /* Daha koyu bir ton, header için */
+    --row-hover-bg-color: #4A4D55; /* Hover rengi, primary renkten daha açık */
+    --cell-hover-bg-color: #3F4248; /* Hücre hover rengi */
+    --button-approve-bg-color: #5A7D57; /* Onay butonu için yeşil tonlarında uyumlu bir renk */
+    --button-reject-bg-color: #8B3A3A; /* Reddet butonu için kırmızı tonlarında uyumlu bir renk */
+}
+
+
+.table-container {
+    overflow-y: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+    max-height: 1500px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #444c65;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--header-bg-color);
+    color: #ffffff;
+    z-index: 1;
+}
+
+tr:hover {
+    background-color: var(--row-hover-bg-color);
+}
+
+td:hover::before,
+th:hover::before {
+    content: '';
+    background-color: var(--cell-hover-bg-color);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+
+td:hover, th:hover {
+    position: relative;
+    background-color: var(--cell-hover-bg-color);
+}
+
+img {
+    border-radius: 5px;
+    object-fit: contain;
+    width: 75px;
+}
+
+.btn {
+    padding: 8px 16px;
+    margin: 4px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-approve {
+    background-color: var(--button-approve-bg-color);
+}
+
+.btn-reject {
+    background-color: var(--button-reject-bg-color);
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+.button-edit, .button-delete {
+    width: 100px; 
+    height: 40px; 
+    padding: 10px 20px;
+    font-size: 14px;
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px; 
+    cursor: pointer; 
+}
+
+.button-edit {
+    background-color: var(--button-approve-bg-color);
+    color: #fff;
+}
+
+.button-delete {
+    background-color: var(--button-reject-bg-color);
+    color: #fff;
+}
+
+/* Admin Theme (theme-tertiary) için Accordion Stilleri */
+.accordion-item {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.accordion-button {
+    background-color: var(--header-bg-color);
+    color: #ffffff;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    padding: 15px;
+    display: flex; /* Flexbox kullanarak hizalama yapacağız */
+    align-items: center; /* Vertikal hizalama */
+    justify-content: space-between; /* Yazılar arasındaki boşlukları ayarlamak için */
+}
+
+    .accordion-button:not(.collapsed) {
+        background-color: var(--row-hover-bg-color);
+        color: #ffffff;
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+        border: none;
+    }
+
+.accordion-body {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    padding: 20px;
+}
+
+.accordion-header {
+    border-bottom: 1px solid var(--cell-hover-bg-color);
+}
+
+.accordion-button:hover {
+    background-color: var(--cell-hover-bg-color);
+    color: #ffffff;
+}
+
+.accordion-button::after {
+    background-image: none;
+    content: "\25BC";
+    font-size: 1.2rem;
+    color: #ffffff;
+    transform: rotate(90deg);
+}
+
+.accordion-button:not(.collapsed)::after {
+    content: "\25BC";
+    transform: rotate(0deg);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: xx-large;
+}
+
+/* Yeni eklenen stil */
+.company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Yazılar arasındaki boşluğu ayarlamak için */
+}
+
+    .company-info span {
+        display: flex;
+        align-items: center; /* Vertikal hizalama */
+    }
+
+    .company-info strong {
+        margin-right: 5px; /* Etiket ve değer arasındaki boşluğu ayarlamak için */
+    }
+
+
+/* İşlem butonları için stil */
+.btn-warning {
+    background-color: #ffc107; /* Sarı renk */
+    border: none;
+    color: #000; /* Siyah yazı rengi */
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+/* Aktif ve Pasif durumları için metin ve ikon stilleri */
+.status {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    gap: 5px;
+    color: inherit;
+}
+
+    .status i {
+        font-size: 1.2rem;
+    }
+
+    .status.active {
+        color: #28a745;
+    }
+
+    .status.inactive {
+        color: #dc3545;
+    }

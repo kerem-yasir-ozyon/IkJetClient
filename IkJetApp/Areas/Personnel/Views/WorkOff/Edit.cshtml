@@ -1,0 +1,41 @@
+﻿@using IkJetApp.Areas.Personnel.Models.WorkOff
+@using IkJetApp.Enums
+@using IkJetApp.Helpers
+@model WorkOffViewModel
+<link rel="stylesheet" href="~/css/customForm.css" />
+
+
+<h1>İzin Talebi Düzenleme</h1>
+
+<form id="formWorkOffEdit" asp-area="Personnel" asp-controller="WorkOff" asp-action="Edit" method="post" class="styled-form">
+    <div class="form-group">
+        <label class="control-label">İzin Tipi</label>
+        <select name="workOfType" asp-for="@Model.WorkOfType" class="form-control">
+            <option value="">İzin tipi seçiniz</option>
+            @foreach (var workOfType in Enum.GetValues(typeof(WorkOfType)).Cast<WorkOfType>())
+            {
+                <option value="@workOfType">@workOfType.GetDisplayName()</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="StartDate" class="control-label">Başlangıç Tarihi</label>
+        <input asp-for="StartDate" name="startDate" class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <label asp-for="EndDate" class="control-label">Bitiş Tarihi</label>
+        <input asp-for="EndDate" name="endDate" class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RequestedLeaveDay" class="control-label">Gün Sayısı</label>
+        <input asp-for="RequestedLeaveDay" name="requestedLeaveDay" class="form-control" type="number" readonly />
+    </div>
+    <div class="button-container">
+        <button type="submit" class="btn-approve btn btn-primary">Düzenle</button>
+        <a asp-area="Personnel" asp-controller="WorkOff" asp-action="ApprovalStatusPendingList" class="btn-approve btn btn-warning">Geri</a>
+    </div>
+</form>
+
+<script src="~/js/clientCustomJs/dateFunction.js"></script>
+
+<script src="~/js/clientCustomJs/submitButonAlert.js"></script>

@@ -1,0 +1,91 @@
+﻿.styled-form {
+    background-color: #074173; /* Ana renk paletine göre koyu ton */
+    padding: 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    box-shadow: 0px 9px 30px -2px rgba(7, 65, 115, 0.7); /* Ana renge uyumlu gölge */
+    max-width: 975px;
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.control-label {
+    font-weight: bold;
+    color: #ffffff !important;
+    min-width: 150px;
+    text-align: left;
+}
+
+.form-control {
+    background-color: #a1c2d0; /* Açık arka plan rengi */
+    color: #052B4C; /* Form kontrolü metin rengi */
+    border-radius: 6px;
+    padding: 12px;
+    width: 100%;
+    font-size: 15px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+    .form-control::placeholder {
+        color: #052B4C; /* Placeholder rengi */
+    }
+
+    .form-control:focus {
+        border-color: #074173; /* Ana renkle uyumlu border */
+        outline: none;
+        box-shadow: 0 0 8px #074173; /* Focus gölgesi */
+    }
+
+.form-control-file {
+    color: #ffffff;
+    background-color: #052B4C; /* Ana renge uyumlu koyu ton */
+    border: 2px solid #a1c2d0;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: inline-block;
+    font-size: 15px;
+}
+
+    .form-control-file:hover {
+        background-color: #a1c2d0; /* Hover arka plan rengi */
+    }
+
+    .form-control-file:active {
+        background-color: #074173; /* Aktif arka plan rengi */
+    }
+
+.btn-approve {
+    background-color: #4B7A4A; /* Onay butonu rengi */
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+    font-weight: bold;
+    margin-right: 10px; /* Aralarına boşluk ekle */
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* Butonlar arasına boşluk ekle */
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    color: #052B4C; /* Başlık rengi */
+}

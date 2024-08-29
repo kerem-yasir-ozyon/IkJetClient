@@ -1,0 +1,69 @@
+﻿@using IkJetApp.Areas.Personnel.Models.Expense
+@using IkJetApp.Enums
+@using IkJetApp.Helpers
+@using Newtonsoft.Json
+@model ExpenseViewModel
+
+@* -------------------------------------------------------------------------- *@
+
+<link rel="stylesheet" href="~/css/customForm.css" />
+<h1>Yeni Harcama Talebi</h1>
+<form id="formExpenseCreate" asp-area="Personnel" asp-controller="Expense" asp-action="Create" method="post" enctype="multipart/form-data" class="styled-form">
+
+    <div class="form-group">
+        <label class="control-label">Harcama Türü</label>
+        <select name="expenseType" asp-for="@Model.ExpenseType" class="form-control">
+            <option value="">Harcama Türü</option>
+            @foreach (var expenseType in Enum.GetValues(typeof(ExpenseType)).Cast<ExpenseType>())
+            {
+                <option value="@expenseType">@expenseType.GetDisplayName()</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.Amount" class="control-label">Tutar</label>
+        <input asp-for="@Model.Amount" name="amount" class="form-control" placeholder="Tutar giriniz" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Para birimi</label>
+        <select name="currencyType" asp-for="@Model.CurrencyTypeDisplay" class="form-control">
+            <option value="">Para birimi seçiniz</option>
+            @foreach (var currencyType in Enum.GetValues(typeof(CurrencyType)).Cast<CurrencyType>())
+            {
+                <option value="@currencyType">@currencyType.GetDisplayName()</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageFile" class="control-label">Dosya Yükle</label>
+        <input asp-for="ImageFile" class="form-control-file" name="ImageFile" type="file" />
+    </div>
+    <div class="button-container">
+    <button type="submit" class="btn-approve btn btn-success ">Ekle</button>
+    </div>
+</form>
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    @if (TempData["ExpenseMessage"] != null)
+    {
+        var expenseMessage = @Html.Raw(JsonConvert.SerializeObject(TempData["ExpenseMessage"].ToString()));
+        <text>
+            Swal.fire({
+                icon: 'info',
+                title: 'Bilgi',
+                text: @expenseMessage
+                    });
+        </text>
+    }
+</script>
+

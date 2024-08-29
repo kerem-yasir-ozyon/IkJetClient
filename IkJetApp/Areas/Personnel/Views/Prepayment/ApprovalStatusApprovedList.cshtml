@@ -1,0 +1,38 @@
+﻿@using IkJetApp.Areas.Personnel.Models.Prepayment
+@model List<PrepaymentViewModel>
+
+@{
+    ViewData["Title"] = "Onaylanan Avans Talepleri";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Avans Talebi Oluştur</a>
+</p>
+<link rel="stylesheet" href="~/css/customTable.css" />
+<div class="table-container theme-secondary">
+<table >
+    <thead>
+        <tr>
+            <th>Avans Miktarı</th>
+            <th>Para Birimi</th>
+            <th>Açıklama</th>
+            <th>Avans Tipi</th>
+            <th>Onay Durumu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Amount</td>
+                <td>@item.CurrencyTypeDisplay</td>
+                <td>@item.Description</td>
+                <td>@item.PrepaymentTypeDisplay</td>
+                <td>@item.ApprovalStatusDisplay</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

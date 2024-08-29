@@ -1,0 +1,104 @@
+﻿.table {
+    width: 100%;
+    table-layout: fixed; /* Kolon genişliklerini sabitler */
+    border-collapse: collapse; /* Kenar çizgilerini birleştirir */
+}
+
+    .table th, .table td {
+        overflow: hidden; /* Taşmayı önler */
+        text-overflow:clip; /* Taşarsa üç nokta ekler */
+        /*white-space: nowrap;*/ /* Tek satırda gösterir */
+        box-sizing: border-box; /* Padding ve border'ı genişliğe dahil eder */
+    }
+
+.table-container {
+    max-height: 100%; /* Ekrana göre dinamik yükseklik */
+    overflow-y: auto; /* Yalnızca dikey kaydırma çubuğu */
+}
+
+.table th {
+    position: sticky;
+    top: 0; /* Başlıkların üstte sabit kalmasını sağlar */
+    background-color: lightgray; /* Başlık arka plan rengini beyaz yapar */
+    z-index: 1; /* Başlıkların diğer içeriklerin üstünde görünmesini sağlar */
+}
+
+
+.table th {
+    position: relative; /* Tooltip için pozisyonlama */
+    
+}
+
+    .table th::after {
+        content: attr(data-title); /* Başlık içeriği */
+        position: absolute;
+        bottom: 100%; /* Başlığın üstünde görünmesini sağlar */
+        left: 0;
+        background-color: #000; /* Arka plan rengi */
+        color: #fff; /* Yazı rengi */
+        padding: 4px 8px; /* İç boşluk */
+        border-radius: 4px; /* Köşe yuvarlama */
+        white-space: nowrap; /* Satır kaydırmayı engeller */
+        display: none; /* Başlangıçta gizli */
+        z-index: 10; /* Diğer içeriklerin üstünde */
+        font-size: 12px; /* Font boyutu */
+    }
+
+    .table th:hover::after {
+        display: block; /* Hover durumunda göster */
+        left: 50%; /* Ortalanmış konum */
+        transform: translateX(-50%); /* Ortalamak için */
+    }
+
+.table th {
+    /* Diğer stil ayarları */
+    position: relative; /* Tooltip için pozisyonlama */
+}
+.col-photo {
+    width: 90px;
+}
+/* Fotoğraf sütunu genişliği */
+.col-name {
+    width: 70px;
+}
+/* İsim sütunu genişliği */
+.col-surname {
+    width: 100px;
+}
+/* Soyisim sütunu genişliği */
+.col-job-title {
+    width: 120px;
+}
+/* Ünvan sütunu genişliği */
+.col-department {
+    width: 100px;
+}
+/* Departman sütunu genişliği */
+.col-email {
+    width: 160px;
+}
+/* Email sütunu genişliği */
+.col-phone {
+    width: 100px;
+}
+/* Telefon Numarası sütunu genişliği */
+.col-salary {
+    width: 90px;
+}
+/* Maaş sütunu genişliği */
+.col-hire-date {
+    width: 110px;
+}
+/* İşe Başlama Tarihi sütunu genişliği */
+.col-termination-date {
+    width: 100px;
+}
+/* İşten Ayrılma Tarihi sütunu genişliği */
+.col-status {
+    width: 70px;
+}
+/* Durumu sütunu genişliği */
+.col-action {
+    width: 100px;
+}
+/* İşlem sütunu genişliği */

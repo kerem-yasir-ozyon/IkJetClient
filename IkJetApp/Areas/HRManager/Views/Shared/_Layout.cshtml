@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>IkJet - İnsan Kaynakları</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+          name="viewport" />
+    <link rel="icon"
+          href="~/assets/img/kaiadmin/favicon.ico"
+          type="image/x-icon" />
+
+
+    @* boostrapten icon cekebilmek icin ekledim *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+
+    <!-- Fonts and icons -->
+    <script src="~/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["/assets/css/fonts.min.css"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="~/assets/css/kaiadmin.min.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="~/assets/css/demo.css" />
+    <link rel="stylesheet" href="~/css/customHRManagerColor.css" />
+    <style>
+        #anaLogo{
+            width:120px;
+            height:60px;
+        }
+        /* .bgRenk{
+            background-color: #1a2035;
+        } */
+
+        .bgRenkNav {
+            background-image: linear-gradient(to right, #1a2035, #282c53, #3e3670, #5c3e8b, #8043a3, #8043a3, #8043a3, #8043a3, #5c3e8b, #3e3670, #282c53, #1a2035);
+        }
+        span{
+            color:white;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar" data-background-color="dark">
+            <div class="sidebar-logo ">
+                <!-- Logo Header -->
+                <div class="logo-header" data-background-color="dark">
+                    
+                        <a asp-area="HRManager" asp-controller="Home" asp-action="Index" class="logo">
+                            <img src="~/assets/img/kaiadmin/ikjetlogo.svg"
+                                 alt="navbar brand"
+                                 class="navbar-brand mt-md-0"
+                                 id="anaLogo" />
+                        </a>
+                    
+                    
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="gg-menu-right"></i>
+                        </button>
+                        <button class="btn btn-toggle sidenav-toggler">
+                            <i class="gg-menu-left"></i>
+                        </button>
+                    </div>
+                    <button class="topbar-toggler more">
+                        <i class="gg-more-vertical-alt"></i>
+                    </button>
+                </div>
+                <!-- End Logo Header -->
+            </div>
+            <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                <div class="sidebar-content">
+                    <ul class="nav nav-secondary">
+                        <li class="nav-item active">
+                            <a asp-area="HRManager" asp-controller="Home" asp-action="Index"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="fas fa-home"></i>
+                                <p>Ana Sayfa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a asp-area="" asp-controller="Home" asp-action="Profile"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="fa fa-user-circle"></i>
+                                <p>Profil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a asp-area="" asp-controller="User" asp-action="Register"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="bi bi-person-plus-fill"></i>
+                                <p>Personel Ekle</p>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a asp-area="HRManager" asp-controller="PersonnelRequest" asp-action="GetUsersByCompany"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="bi bi-person-plus-fill"></i>
+                                <p>Personel Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-section">
+                            <span class="sidebar-mini-icon">
+                                <i class="fa fa-ellipsis-h"></i>
+                            </span>
+                            <h4 class="text-section">Talepler</h4>
+                        </li>
+                        <li class="nav-item">
+                            <a data-bs-toggle="collapse" href="#base">
+                                <i class="fas fa-layer-group"></i>
+                                <p>Talepler</p>
+                                <span class="caret"></span>
+                            </a>
+                            <div class="collapse" id="base">
+                                <ul class="nav nav-collapse">
+
+                                    
+                                    <li>
+                                        <a asp-area="HRManager" asp-controller="PersonnelRequest" asp-action="GetWorkOffRequestsByCompany">
+                                            <span class="sub-item">İzin Talepleri</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="HRManager" asp-controller="PersonnelRequest" asp-action="GetPrepaymentRequestsByCompany">
+                                            <span class="sub-item">Avans Talepleri</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a asp-area="HRManager" asp-controller="PersonnelRequest" asp-action="GetExpenseRequestsByCompany">
+                                            <span class="sub-item">Harcama Talepleri</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="main-panel">
+            <div class="main-header bgRenkNav">
+                <div class="main-header-logo">
+                    <!-- Logo Header -->
+                    <div class="logo-header" data-background-color="dark">
+                        <a class="logo">
+                            <img src="~/assets/img/kaiadmin/logo_light.svg"
+                                 alt="navbar brand"
+                                 class="navbar-brand"
+                                 height="20" />
+                        </a>
+                        <div class="nav-toggle">
+                            <button class="btn btn-toggle toggle-sidebar">
+                                <i class="gg-menu-right"></i>
+                            </button>
+                            <button class="btn btn-toggle sidenav-toggler">
+                                <i class="gg-menu-left"></i>
+                            </button>
+                        </div>
+                        <button class="topbar-toggler more">
+                            <i class="gg-more-vertical-alt"></i>
+                        </button>
+                    </div>
+                    <!-- End Logo Header -->
+                </div>
+                @await Component.InvokeAsync("User")
+        </div>
+
+        <div class="container">
+            <div class="page-inner">
+                
+                <div class="page-category">
+                        @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        @* <footer class="footer">
+            <div class="container-fluid d-flex justify-content-between">
+                <nav class="pull-left">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://www.themekita.com">
+                                ThemeKita
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"> Help </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"> Licenses </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright">
+                    2024, made with <i class="fa fa-heart heart text-danger"></i> by
+                    <a href="http://www.themekita.com">ThemeKita</a>
+                </div>
+                <div>
+                    Distributed by
+                    <a target="_blank" href="https://themewagon.com/">ThemeWagon</a>.
+                </div>
+            </div>
+        </footer> *@
+    </div>
+    </div>
+
+
+
+
+    <!--   Core JS Files   -->
+    <script src="~/assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="~/assets/js/core/popper.min.js"></script>
+    <script src="~/assets/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="~/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="~/assets/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="~/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="~/assets/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="~/assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="~/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="~/assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="~/assets/js/plugin/jsvectormap/world.js"></script>
+
+    <!-- Google Maps Plugin -->
+    <script src="~/assets/js/plugin/gmaps/gmaps.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="~/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="~/assets/js/kaiadmin.min.js"></script>
+
+    @*     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script> *@
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            const allMenus = document.querySelectorAll('.nav-item .collapse');
+
+            
+            allMenus.forEach(menu => {
+                const menuId = menu.id;
+                const isOpen = localStorage.getItem(menuId);
+
+                if (isOpen === 'true') {
+                    menu.classList.add('show');
+                } else {
+                    menu.classList.remove('show');
+                }
+            });
+
+           
+            allMenus.forEach(menu => {
+                menu.addEventListener('shown.bs.collapse', function () {
+                    localStorage.setItem(menu.id, 'true');
+                });
+                menu.addEventListener('hidden.bs.collapse', function () {
+                    localStorage.setItem(menu.id, 'false');
+                });
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>

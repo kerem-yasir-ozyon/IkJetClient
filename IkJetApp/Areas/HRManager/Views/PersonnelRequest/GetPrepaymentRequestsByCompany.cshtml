@@ -1,0 +1,88 @@
+﻿@using IkJetApp.Areas.HRManager.Models
+@using Newtonsoft.Json
+@model IEnumerable<PrepaymentRequestGroupedViewModel>
+
+<link rel="stylesheet" href="~/css/customTable.css" />
+
+<div class="table-container theme-primary">
+    <h2>Güncel Avans Talepleri</h2>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+        @if (Model == null || !Model.Any())
+        {
+            <p>Bu şirkete ait henüz bir avans talebi bulunmuyor.</p>
+        }
+        else
+        {
+            @foreach (var group in Model)
+            {
+                var collapseId = "collapse-" + group.FullName.Replace(" ", "-");
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading-@collapseId">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                            @group.FullName
+                        </button>
+                    </h2>
+                    <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="heading-@collapseId" data-bs-parent="#accordionPanelsStayOpenExample">
+                        <div class="accordion-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Şirket Adı</th>
+                                        <th>Tutar</th>
+                                        <th>Para Birimi</th>
+                                        <th>Açıklama</th>
+                                        <th>Avans Tipi</th>
+                                        <th>Onay Durumu</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in group.Requests)
+                                    {
+                                        <tr>
+                                            <td>@item.CompanyName</td>
+                                            <td>@item.Amount</td>
+                                            <td>@item.CurrencyTypeDisplay</td>
+                                            <td>@item.Description</td>
+                                            <td>@item.PrepaymentTypeDisplay</td>
+                                            <td>@item.ApprovalStatusDisplay</td>
+                                            <td>
+                                                <form method="post" asp-action="ChangePrepaymentStatus">
+                                                    <input type="hidden" name="Id" value="@item.Id" />
+                                                    <input type="hidden" name="Status" value="Approved" />
+                                                    <button type="submit" class="btn btn-approve">Onayla</button>
+                                                </form>
+                                                <form method="post" asp-action="ChangePrepaymentStatus">
+                                                    <input type="hidden" name="Id" value="@item.Id" />
+                                                    <input type="hidden" name="Status" value="Rejected" />
+                                                    <button type="submit" class="btn btn-reject">Reddet</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    @if (TempData["Message"] != null)
+    {
+        var message = @Html.Raw(JsonConvert.SerializeObject(TempData["Message"].ToString()));
+        <text>
+            Swal.fire({
+                icon: 'info',
+                title: 'Bilgi',
+                text: @message
+                    });
+        </text>
+    }
+</script>

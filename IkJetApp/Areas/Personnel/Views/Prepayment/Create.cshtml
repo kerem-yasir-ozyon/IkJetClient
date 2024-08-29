@@ -1,0 +1,87 @@
+﻿@using IkJetApp.Areas.Personnel.Models.Prepayment
+@using IkJetApp.Enums
+@using IkJetApp.Helpers
+@using Newtonsoft.Json
+@model PrepaymentViewModel
+
+@{
+	var errorMessage = ViewBag.ErrorMessage;
+}
+<link rel="stylesheet" href="~/css/customForm.css" />
+
+<h1>Yeni Avans Talebi</h1>
+
+<form id="formPrepaymentCreate" asp-area="Personnel" asp-controller="Prepayment" asp-action="Create" method="post" class="styled-form">
+	<div class="form-group">
+		<label asp-for="@Model.Amount" class="control-label">Tutar</label>
+		<input asp-for="@Model.Amount" name="amount" class="form-control" placeholder="Tutar giriniz" />
+	</div>
+	<div class="form-group">
+		<label class="control-label">Para birimi</label>
+		<select name="currencyType" asp-for="@Model.CurrencyType" class="form-control">
+			<option value="">Para birimi seçiniz</option>
+			@foreach (var currencyType in Enum.GetValues(typeof(CurrencyType)).Cast<CurrencyType>())
+			{
+				<option value="@currencyType">@currencyType.GetDisplayName()</option>
+			}
+		</select>
+	</div>
+	<div class="form-group">
+		<label asp-for="@Model.Description" class="control-label">Açıklama</label>
+		<textarea asp-for="@Model.Description" name="description" class="form-control" placeholder="Açıklama giriniz"></textarea>
+	</div>
+	<div class="form-group">
+		<label class="control-label">Avans Türü</label>
+		<select name="prepaymentType" asp-for="@Model.PrepaymentType" class="form-control">
+			<option value="">Avans türünü seçiniz</option>
+			@foreach (var prepaymentType in Enum.GetValues(typeof(PrepaymentType)).Cast<PrepaymentType>())
+			{
+				<option value="@prepaymentType">@prepaymentType.GetDisplayName()</option>
+			}
+		</select>
+	</div>
+	<div class="button-container">
+		<button type="submit" class="btn-approve btn btn-success">Ekle</button>
+	</div>
+</form>
+
+
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+	<script>
+		window.onload = function () {
+			swal({
+				title: 'Hata',
+				text: '@Html.Raw(errorMessage)',
+				icon: 'error',
+				buttons: {
+					confirm: {
+						className: 'btn btn-danger',
+					},
+				},
+			});
+		};
+	</script>
+}
+
+
+<!-- Sweet Alert -->
+<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+	@if (TempData["PrepaymentMessage"] != null)
+	{
+		var prepaymentMessage = @Html.Raw(JsonConvert.SerializeObject(TempData["PrepaymentMessage"].ToString()));
+		<text>
+			Swal.fire({
+				icon: 'info',
+				title: 'Bilgi',
+				text: @prepaymentMessage
+									});
+		</text>
+	}
+</script>

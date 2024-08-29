@@ -1,0 +1,152 @@
+﻿@using IkJetApp.Areas.Admin.Models.Company
+@model CompanyViewModel
+
+@{
+    ViewData["Title"] = "Şirket Bilgilerini Güncelle";
+}
+<link rel="stylesheet" href="~/css/customFormAdmin.css" />
+<h2>Şirket Bilgilerini Güncelle</h2>
+
+<style>
+    #per-image {
+        width: 200px;
+        border-radius: 20px;
+    }
+
+    .profile-photo {
+        margin: 32px 30px 30px 0;
+        max-width: 250px;
+        max-height: 250px;
+        border-radius: 0.5rem;
+    }
+
+    .alert {
+        color: black; 
+    }
+
+
+</style>
+
+<form asp-controller="Company" asp-action="Edit" method="post" enctype="multipart/form-data" class="styled-form">
+
+    <div class="form-group">
+        <div class="card-title d-flex justify-content-center">
+            <img id="per-image" class="object-fit-contain" src="~/images/user/@(string.IsNullOrEmpty(Model.ImageName) ? "defaultLogo.jpg" : Model.ImageName)" alt="resim" />
+        </div>
+    </div>
+    <div>
+        @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+        {
+            <div class="alert alert-danger mt-3">
+                @ViewBag.ErrorMessage
+            </div>
+        }
+    </div>
+   
+
+
+
+    <div class="form-group">
+        <label asp-for="CompanyName" class="control-label">Şirket Adı</label>
+        <input asp-for="CompanyName" class="form-control" />
+        <span asp-validation-for="CompanyName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CompanyTitle" class="control-label">Şirket Ünvanı</label>
+        <input asp-for="CompanyTitle" class="form-control" />
+        <span asp-validation-for="CompanyTitle" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MersisNumber" class="control-label">MERSİS Numarası</label>
+        <input asp-for="MersisNumber" class="form-control" />
+        <span asp-validation-for="MersisNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TaxNumber" class="control-label">Vergi Numarası</label>
+        <input asp-for="TaxNumber" class="form-control" />
+        <span asp-validation-for="TaxNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TaxOffice" class="control-label">Vergi Dairesi</label>
+        <input asp-for="TaxOffice" class="form-control" />
+        <span asp-validation-for="TaxOffice" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label">Telefon Numarası</label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="control-label">Adres</label>
+        <textarea asp-for="Address" class="form-control"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="control-label">E-posta</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EmployeeCount" class="control-label">Çalışan Sayısı</label>
+        <input asp-for="EmployeeCount" class="form-control" type="number" />
+        <span asp-validation-for="EmployeeCount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FoundationOfYear" class="control-label">Kuruluş Yılı</label>
+        <input asp-for="FoundationOfYear" class="form-control" type="date" />
+        <span asp-validation-for="FoundationOfYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConractStartDate" class="control-label">Sözleşme Başlangıç Tarihi</label>
+        <input asp-for="ConractStartDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="ConractStartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConractEndDate" class="control-label">Sözleşme Bitiş Tarihi</label>
+        <input asp-for="ConractEndDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="ConractEndDate" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="ImageFile" class="control-label">Şirket Logosu Yükle</label>
+        <input name="ImageFile" asp-for="ImageFile" class="form-control-file" type="file" id="imageUpload" />
+        <input type="hidden" asp-for="Id" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+
+    <div class="button-container">
+        <input type="submit" value="Kaydet" class="btn btn-approve" />
+        <a asp-action="List" class=" btn btn-secondary">İptal</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    document.getElementById('imageUpload').addEventListener('change', function (e) {
+        const [file] = e.target.files;
+        if (file) {
+            document.getElementById('per-image').src = URL.createObjectURL(file);
+        }
+    });
+</script>
+
+
+<script src="~/assets/js/core/jquery-3.7.1.min.js"></script>
+<script src="~/assets/js/core/popper.min.js"></script>
+<script src="~/assets/js/core/bootstrap.min.js"></script>

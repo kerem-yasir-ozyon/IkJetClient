@@ -1,0 +1,84 @@
+﻿
+@model UserViewModel
+
+
+<!-- Navbar Header -->
+<nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+    <div class="container-fluid">
+        <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
+            @* <div class="input-group">
+            <div class="input-group-prepend">
+            <button type="submit" class="btn btn-search pe-1">
+            <i class="fa fa-search search-icon"></i>
+            </button>
+            </div>
+            <input type="text"
+            placeholder="Search ..."
+            class="form-control" />
+            </div> *@
+        </nav>
+
+        <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+           
+
+            <li class="nav-item topbar-user dropdown hidden-caret">
+                <a class="dropdown-toggle profile-pic"
+                   data-bs-toggle="dropdown"
+                   role="button"
+                   aria-expanded="false">
+                    <div class="avatar-sm">
+                        @* <img src="~/images/@Model.ImageName"
+                             alt="..."
+                             class="avatar-img rounded-circle" /> *@
+
+                        <img src="~/images/user/@(string.IsNullOrEmpty(Model.ImageName) ? "default-avatar.png" : Model.ImageName)"
+                             alt="..."
+                             class="avatar-img rounded-circle" />
+
+                    </div>
+                    <span class="profile-username">
+                        <span class="op-7">Merhaba,</span>
+                        <span class="fw-bold">@Model.FirstName</span>
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                    <li>
+                        <div class="user-box">
+                            <div class="avatar-lg">
+                                <img src="~/images/user/@(string.IsNullOrEmpty(Model.ImageName) ? "default-avatar.png" : Model.ImageName)"
+                                     alt="image profile"
+                                     class="avatar-img rounded" />
+                            </div>
+                            <div class="u-text">
+                                <h4>@Model.FirstName</h4>
+                                <p class="text-muted">@Model.CompanyName</p>
+                                <p class="text-muted">@Model.Department</p>
+                                <p class="text-muted">@Model.JobTitle</p>
+                                <p class="text-muted">@Model.Email</p>
+                                    @* <a class="btn btn-xs btn-secondary btn-sm">View Profile</a> *@
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                            @* <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">My Profile</a>
+                        <a class="dropdown-item">My Balance</a>
+                        <a class="dropdown-item">Inbox</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">Account Setting</a>
+                        <div class="dropdown-divider"></div> *@
+                        <div class="justify-content-center">
+                            <a asp-area="" asp-controller="Home" asp-action="Profile" class="btn btn-xs btn-grad btn-sm d-flex justify-content-center mb-3">Profil</a>
+                        </div>
+                        <div class="justify-content-center">
+                            <a asp-area="" asp-controller="User" asp-action="Logout" class="btn btn-xs btn-danger btn-sm d-flex justify-content-center">Çıkış Yap</a>
+                        </div>
+                    </li>
+    </div>
+    </ul>
+    </li>
+    </ul>
+    </div>
+</nav>
+<!-- End Navbar -->

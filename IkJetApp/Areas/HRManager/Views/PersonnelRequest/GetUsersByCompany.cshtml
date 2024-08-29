@@ -1,0 +1,163 @@
+﻿@using IkJetApp.Areas.HRManager.Models
+@using Newtonsoft.Json
+@model IEnumerable<UserListGroupedViewModel>
+
+@{
+	ViewBag.Title = "Şirket Personelleri";
+}
+
+@if (Model == null || !Model.Any())
+{
+	<p>Bu şirkete ait personel henüz eklenmemiştir.</p>
+}
+else
+{
+	<link rel="stylesheet" href="~/css/customTable.css" />
+	<link rel="stylesheet" href="~/css/customUserByCompany.css" />
+
+	<h2>Personel Listesi - @Model.FirstOrDefault()?.Users.FirstOrDefault()?.CompanyName</h2>
+
+	<div class="accordion" id="userAccordion">
+		@foreach (var group in Model)
+		{
+			var userCount = group.Users.Count();
+			var collapseClass = group == Model.First() ? "show" : "";
+
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="heading-@group.GroupName">
+					<button class="accordion-button @collapseClass" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@group.GroupName" aria-expanded="@(collapseClass == "show")" aria-controls="collapse-@group.GroupName">
+						@group.GroupName Kullanıcılar (@userCount)
+					</button>
+				</h2>
+				<div id="collapse-@group.GroupName" class="accordion-collapse collapse @collapseClass" aria-labelledby="heading-@group.GroupName" data-bs-parent="#userAccordion">
+					<div class="accordion-body">
+						<div class="table-container">
+							<!-- Taşmayı önlemek için wrapper ekledik -->
+							<table class="table">
+								<thead>
+									<tr>
+										<th class="col-photo">Fotoğraf</th>
+										<th class="col-name">İsim</th>
+										<th class="col-surname">Soyisim</th>
+										<th class="col-job-title">Ünvan</th>
+										<th class="col-department">Departman</th>
+										<th class="col-email">Email</th>
+										<th class="col-phone">Telefon</th>
+										<th class="col-salary">Maaş</th>
+										<th class="col-hire-date" data-title="İşe Başlama Tarihi">İşe Başlama Tarihi</th>
+										@if (!group.Users.All(user => user.IsActive))
+										{
+											<th class="col-termination-date">İşten Ayrılma Tarihi</th>
+										}
+										<th class="col-status" data-title="Durumu">Durumu</th>
+										<th class="col-action">
+											@if (group.Users.All(user => user.IsActive))
+											{
+												<span style="color:black;">İşlem</span>
+											}
+										</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var user in group.Users)
+									{
+										<tr>
+											<td class="col-photo">
+												<img src="~/images/user/@(string.IsNullOrEmpty(user.ImageName) ? "default-avatar.png" : user.ImageName)" alt="resim" style="width: 75px; border-radius: 5px;" class="object-fit-contain" />
+											</td>
+											<td class="col-name">@user.FirstName</td>
+											<td class="col-surname">@user.LastName</td>
+											<td class="col-job-title">@user.JobTitle</td>
+											<td class="col-department">@user.Department</td>
+											<td class="col-email">@user.Email</td>
+											<td class="col-phone">@user.PhoneNumber</td>
+											<td class="col-salary">@user.Salary.ToString("C")</td>
+											<td class="col-hire-date">@user.HireDate.ToShortDateString()</td>
+											@if (!user.IsActive)
+											{
+												<td class="col-termination-date">@user.TerminationDate?.ToShortDateString()</td>
+											}
+											<td class="col-status">
+												@Html.Raw(user.IsActive
+																					? "<span class=\"status active\"><i class=\"bi bi-check-circle-fill\"></i> Aktif</span>"
+																					: "<span class=\"status inactive\"><i class=\"bi bi-x-circle-fill\"></i> Pasif</span>")
+											</td>
+											<td class="col-action">
+												@if (user.IsActive)
+												{
+													<form method="post" asp-area="HRManager" asp-controller="PersonnelRequest" asp-action="ChangeUserStatus" onsubmit="return confirmDelete(this);">
+														<input type="hidden" name="id" value="@user.Id" />
+														<button type="submit" class="btn btn-danger justify-content-start">İşten Çıkar</button>
+													</form>
+												}
+											</td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						</div> <!-- .table-container sonu -->
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+}
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+
+<!-- Sweet Alert -->
+<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+	@if (TempData["Message"] != null)
+	{
+		var message = @Html.Raw(JsonConvert.SerializeObject(TempData["Message"].ToString()));
+		<text>
+			Swal.fire({
+				icon: 'info',
+				title: 'Bilgi',
+				text: @message
+											});
+		</text>
+	}
+
+		function confirmDelete(form) {
+			swal({
+				title: "Emin misiniz?",
+				text: "Bu işlemi geri alamazsınız!",
+				icon: "warning",
+				buttons: {
+					cancel: {
+						text: "Vazgeç",
+						value: null,
+						visible: true,
+						className: "btn btn-secondary",
+						closeModal: true,
+					},
+					confirm: {
+						text: "Evet, işten çıkar!",
+						value: true,
+						visible: true,
+						className: "btn btn-danger",
+						closeModal: true
+					}
+				}
+			}).then((isConfirm) => {
+				if (isConfirm) {
+					form.submit();
+				}
+			});
+			return false; // Formun otomatik olarak gönderilmesini engelle
+		}
+
+</script>
+
+
+
+
+

@@ -1,0 +1,682 @@
+﻿@using Newtonsoft.Json
+
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title></title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+
+	<!-- Favicons -->
+	<link href="~/assets-front/img/favicon.png" rel="icon">
+	<link href="~/assets-front/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="~/assets-front/vendor/aos/aos.css" rel="stylesheet">
+	<link href="~/assets-front/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="~/assets-front/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<link href="~/assets-front/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+	<link href="~/assets-front/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+	<link href="~/assets-front/vendor/remixicon/remixicon.css" rel="stylesheet">
+	<link href="~/assets-front/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+	<link href="~/assets-front/customCss/custom.css" rel="stylesheet" />
+
+	<!-- Template Main CSS File -->
+	<link href="~/assets-front/css/style.css" rel="stylesheet">
+
+	<!-- =======================================================
+	* Template Name: Arsha - v4.3.0
+	* Template URL: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/
+	* Author: BootstrapMade.com
+	* License: https://bootstrapmade.com/license/
+	======================================================== -->
+</head>
+
+<body>
+
+	<!-- ======= Header ======= -->
+	<header id="header" class="fixed-top ">
+		<div class="container d-flex align-items-center">
+
+			<h1 class="logo me-auto ms-5"><a  asp-controller="Home" asp-action="Index">
+				<img src="~/assets/img/kaiadmin/ikjetlogo.svg" alt="Alternate Text" />
+
+			</a></h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			<!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+			<nav id="navbar" class="navbar me-5">
+				<ul>
+					<li><a class="nav-link scrollto active" href="#hero">Anasayfa</a></li>
+					<li><a class="nav-link scrollto" href="#about">Hakkımızda</a></li>
+					<li><a class="nav-link scrollto" href="#services">Hizmetlerimiz</a></li>
+				
+					<li><a class="nav-link scrollto" href="#team">Ekibimiz</a></li>
+					<li><a class="nav-link scrollto" href="#contact">İletişim</a></li>
+					
+					
+					
+					<li><a class="getstarted scrollto" asp-controller="User" asp-action="Login">Giriş Yap</a></li>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav><!-- .navbar -->
+
+		</div>
+	</header><!-- End Header -->
+	<!-- ======= Hero Section ======= -->
+	<section id="hero" class="d-flex align-items-center ">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1"></div>
+				<div class="col-lg-5 col-md-5 col-sm-5 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+					<h1>İşletmeniz için en iyi insan kaynakları uygulaması</h1>
+					<h2>Profesyonel ekibimizle sizlere en iyi hizmeti sunmayı amaçlamaktayız</h2>
+					<div class="d-flex justify-content-center justify-content-lg-start">
+						<a asp-controller="User" asp-action="Login" class="btn-get-started scrollto">Giriş Yap</a>
+						<a href="https://www.youtube.com/watch?v=7uyo8VbRfms" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Tanıtım Videosunu İzle</span></a>
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-5 col-sm-5 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+					<img src="~/assets-front/img/hero-img.png" class="img-fluid animated" alt="">
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<!-- End Hero -->
+
+	<main id="main">
+
+		
+		
+		<!-- ======= About Us Section ======= -->
+		
+		<section id="about" class="about">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Hakkımızda</h2>
+				</div>
+
+				<div class="row content">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-5 col-md-5 col-sm-5">
+						<p>
+							İkJet, insan kaynakları süreçlerini dijitalleştiren ve şirketlerin iş gücü yönetimini kolaylaştıran yenilikçi bir otomasyon sistemidir. İkJet ile personel, insan kaynakları yetkilisi ve admin rolleri arasında sorunsuz bir iş akışı sağlanır.
+						</p>
+						<ul>
+							<li><i class="ri-check-double-line"></i> Personeller, harcama, izin ve avans taleplerini kolayca oluşturabilir ve geçmiş taleplerini takip edebilir.</li>
+							<li><i class="ri-check-double-line"></i> İK yetkilileri, talepleri hızla değerlendirip onay veya red işlemlerini gerçekleştirebilir.</li>
+							<li><i class="ri-check-double-line"></i> Admin kullanıcılar, sistemdeki tüm kullanıcıları ve süreçleri yönetebilir.</li>
+						</ul>
+					</div>
+					<div class="col-lg-5 col-md-5 col-sm-5 ">
+						<p>
+							İkJet, her rol için özelleştirilmiş alanlar ve işlevler sunarak, çalışanların ihtiyaçlarını en iyi şekilde karşılamayı amaçlar. Bu sayede, iş süreçleri daha verimli hale gelir ve insan kaynakları yönetimi daha etkin bir şekilde yürütülür.
+						</p>
+						<p>
+							İkJet, kullanıcı dostu arayüzü ve esnek yapısıyla her seviyede çalışan için erişilebilir bir platform sunar. Sistem, şirketlerin insan kaynakları politikalarına uyum sağlayarak, tüm işleyişin kontrol altında tutulmasına ve gerektiğinde hızlı müdahalelere olanak tanır. Bu sayede, hem personel memnuniyeti artar hem de yöneticilerin karar alma süreçleri hızlanır.
+						</p>
+
+						@* <a href="#" class="btn-learn-more">Daha Fazla</a> *@
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<!-- End About Us Section -->
+		<!-- ======= Why Us Section ======= -->
+		
+		<section id="why-us" class="why-us section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-5 col-md-5 col-sm-5 d-flex flex-column ">
+
+						<div class="content justify-content-start">
+							<h3>İK Süreçlerini Kolaylaştıran <strong>İkJet ile Verimliliği Artırın</strong></h3>
+							<p>
+								İkJet, insan kaynakları süreçlerini dijitalleştirerek zamandan ve maliyetten tasarruf etmenizi sağlar. Sistem, her seviyede çalışan için kullanıcı dostu bir platform sunarak iş akışını sorunsuz hale getirir.
+							</p>
+						</div>
+
+						<div class="accordion-list">
+							<ul>
+								<li>
+									<a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>01</span> Kullanıcı Dostu Arayüz ve Kolay Erişim <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+									<div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+										<p>
+											İkJet, kullanıcı dostu bir arayüze sahip olup, hem personellerin hem de yöneticilerin ihtiyaçlarına uygun şekilde tasarlanmıştır. Platforma erişim kolaylığı sayesinde, işlemler hızlı ve sorunsuz bir şekilde gerçekleştirilir.
+										</p>
+									</div>
+								</li>
+
+								<li>
+									<a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>02</span> Esnek Yapı ve Özelleştirilebilir İşlevler <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+									<div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
+										<p>
+											İkJet, şirketlerin ihtiyaçlarına göre özelleştirilebilir yapısıyla, esnek ve dinamik bir insan kaynakları yönetimi sunar. Farklı kullanıcı rolleri için özel olarak tasarlanmış alanlar ve işlevlerle, iş süreçlerinizi daha etkin bir şekilde yönetebilirsiniz.
+										</p>
+									</div>
+								</li>
+
+								<li>
+									<a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed"><span>03</span> Güçlü Yönetim ve Analiz Araçları <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+									<div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
+										<p>
+											İkJet, yöneticiler için güçlü analiz ve raporlama araçları sunarak, insan kaynakları süreçlerindeki verimliliği artırır. Detaylı verilerle desteklenen karar alma süreçleri, şirketin stratejik hedeflerine ulaşmasını kolaylaştırır.
+										</p>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+
+					</div>
+
+					<div class="col-lg-5 col-md-5 col-sm-5 d-flex justify-content-center align-items-center">
+						<img class="w-100" src="~/assets-front/img/why-us.png" alt="Alternate Text" />
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+
+				</div>
+
+			</div>
+		</section>
+
+
+		<!-- End Why Us Section -->
+		<!-- ======= Skills Section ======= -->
+		
+		<section id="skills" class="skills">
+			<div class="container" data-aos="fade-up">
+
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-5 col-md-5 col-sm-5 d-flex align-items-center">
+						<img src="~/assets-front/img/skills.png" class="img-fluid" alt="İnsan Kaynakları Otomasyonu">
+					</div>
+					<div class="col-lg-5 col-md-5 col-sm-5 pt-4 pt-lg-0 content" data-aos="fade-left" data-aos-delay="100">
+						<h3>İnsan Kaynakları Yönetiminde Yüksek Performans</h3>
+						<p class="fst-italic">
+							İkJet, insan kaynakları süreçlerini dijitalleştirerek şirketinizin verimliliğini artırır ve iş süreçlerini daha etkin hale getirir.
+						</p>
+
+						<div class="skills-content">
+
+							<div class="progress">
+								<span class="skill">Personel Yönetimi <i class="val">100%</i></span>
+								<div class="progress-bar-wrap">
+									<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+
+							<div class="progress">
+								<span class="skill">İzin ve Harcama Takibi <i class="val">100%</i></span>
+								<div class="progress-bar-wrap">
+									<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+
+							<div class="progress">
+								<span class="skill">Veri Analizi ve Raporlama <i class="val">100%</i></span>
+								<div class="progress-bar-wrap">
+									<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+
+							<div class="progress">
+								<span class="skill">Kullanıcı Yetkilendirme ve Güvenlik <i class="val">100%</i></span>
+								<div class="progress-bar-wrap">
+									<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+				</div>
+
+			</div>
+		</section>
+
+
+
+		<!-- End Skills Section -->
+		<!-- ======= Services Section ======= -->
+		
+
+		<section id="services" class="services section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="row section-title">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-10 col-md-10 col-sm-10">
+						<h2>Hizmetlerimiz</h2>
+						<p>İkJet, insan kaynakları süreçlerinizi modern araçlarla daha verimli hale getirir. Personel yönetiminden raporlamaya kadar geniş bir hizmet yelpazesi sunuyoruz.</p>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					
+				</div>
+
+				<div class="row">
+					<div class="col-xl-1 col-md-1 col-sm-1"></div>
+					<div class="col-xl-10 col-md-10 col-sm-10 d-flex justify-content-between">
+						<div class="row d-flex justify-content-between">
+							<div class="col-xl-2 col-md-5 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+								<div class="icon-box w-100">
+									<div class="icon"><i class="bx bx-user"></i></div>
+									<h4><a href="">Personel Yönetimi</a></h4>
+									<p>Çalışanlarınızın tüm bilgilerini tek bir yerden yönetin ve takip edin.</p>
+								</div>
+							</div>
+
+							<div class="col-xl-2 col-md-5 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+								<div class="icon-box w-100">
+									<div class="icon"><i class="bx bx-calendar"></i></div>
+									<h4><a href="">İzin Takibi</a></h4>
+									<p>İzin taleplerini kolayca onaylayın ve süreci dijital ortamda yönetin.</p>
+								</div>
+							</div>
+
+							<div class="col-xl-2 col-md-5 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+								<div class="icon-box w-100">
+									<div class="icon"><i class="bx bx-money"></i></div>
+									<h4><a href="">Avans Takibi</a></h4>
+									<p>Personelinizin avans taleplerini hızlıca değerlendirin ve işlemleri güvenle yönetin.</p>
+								</div>
+							</div>
+
+							<div class="col-xl-2 col-md-5 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+								<div class="icon-box w-100">
+									<div class="icon"><i class="bx bx-credit-card"></i></div>
+									<h4><a href="">Harcama Takibi</a></h4>
+									<p>Harcama taleplerini düzenleyin, onay sürecini kolaylaştırın ve bütçenizi kontrol edin.</p>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="col-xl-1 col-md-1 col-sm-1"></div>
+
+
+				</div>
+
+			</div>
+		</section>
+
+
+
+		<!-- End Services Section -->
+		<!-- ======= Cta Section ======= -->
+
+		<section id="cta" class="cta">
+			<div class="container" data-aos="zoom-in">
+
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-7 col-md-7 col-sm-7 text-center text-lg-start">
+						<h3>İkjet'e Katılın</h3>
+						<p>İnsan kaynakları süreçlerinizi dijitalleştirerek verimliliği artırın. İkJet ile personel yönetiminden izin takibine kadar tüm işlemleri kolayca yapabilirsiniz. Şimdi harekete geçin ve işletmenizi bir adım öne taşıyın.</p>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-3 cta-btn-container text-center">
+						<a class="cta-btn align-middle" href="#">Hemen Başlayın</a>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+				</div>
+
+			</div>
+		</section>
+
+
+		<!-- End Cta Section -->
+		
+		<!-- ======= Team Section ======= -->
+		
+
+		<section id="team" class="team section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Ekibimiz</h2>
+					<div class="row mb-5">
+						<div class="col-lg-1 col-md-1 col-sm-1"></div>
+						<div class="col-lg-10 col-md-10 col-sm-10">
+							<p>İkJet'in başarılı bir şekilde geliştirilmesi ve yönetilmesi için uzman ekibimizle tanışın. Her biri kendi alanında deneyimli profesyonellerden oluşan ekibimiz, insan kaynakları otomasyonunda mükemmel sonuçlar elde etmek için çalışmaktadır.</p>
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					</div>
+					
+				</div>
+
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-5 col-md-5 col-sm-5">
+						<div class=" member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="100">
+							<div class="pic"><img src="~/assets-front/img/team/burak2.jpg" class="img-fluid" alt="Burak Gonca"></div>
+							<div class="member-info">
+								<h4>Burak Gonca</h4>
+								<span>Full Stack .NET Developer</span>
+								<p>İnsan kaynakları süreçlerini dijitalleştirmek ve iş akışlarını optimize etmek için gelişmiş yazılım çözümleri sunuyor. Tecrübesiyle projede stratejik rol üstleniyor.</p>
+								<div class="social">
+									<a href=""><i class="ri-instagram-fill"></i></a>
+									<a href="https://www.linkedin.com/in/burak-gonca/"><i class="ri-linkedin-box-fill"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-5 col-md-5 col-sm-5">
+						<div class=" member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="200">
+							<div class="pic"><img src="~/assets-front/img/team/hakan.jpg" class="img-fluid" alt="Hakan Girgin"></div>
+							<div class="member-info">
+								<h4>Hakan Girgin</h4>
+								<span>Software Developer</span>
+								<p>İkJet’in yazılım altyapısını geliştiren, kodlama ve sistem tasarımı konularında uzmanlaşmış bir yazılım geliştirici. Kullanıcı deneyimini iyileştirmek için sürekli yenilikler getiriyor.</p>
+								<div class="social">
+									<a href=""><i class="ri-instagram-fill"></i></a>
+									<a href="https://www.linkedin.com/in/hakan-girgin-17a06a147/"><i class="ri-linkedin-box-fill"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mt-lg-5">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-5 col-md-5 col-sm-5">
+						<div class=" member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="300">
+							<div class="pic"><img src="~/assets-front/img/team/kerem2.jpg" class="img-fluid" alt="Kerem Yasir Özyön"></div>
+							<div class="member-info">
+								<h4>Kerem Yasir Özyön</h4>
+								<span>Full Stack .Net Developer</span>
+								<p>İkJet’in tüm yazılım süreçlerinde etkin bir rol oynayan Kerem, hem frontend hem de backend geliştirme konusunda geniş bir deneyime sahip. Projenin tüm teknik gereksinimlerini karşılamak için çalışıyor.</p>
+								<div class="social">
+									<a href=""><i class="ri-instagram-fill"></i></a>
+									<a href="https://www.linkedin.com/in/kerem-yasir-%C3%B6zy%C3%B6n/"><i class="ri-linkedin-box-fill"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-5 col-md-5 col-sm-5">
+						<div class=" member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="400">
+							<div class="pic"><img src="~/assets-front/img/team/yusuf.jpg" class="img-fluid" alt="Yusuf Kenan Girgin"></div>
+							<div class="member-info">
+								<h4>Yusuf Kenan Girgin</h4>
+								<span>Software Developer - Backend Developer</span>
+								<p>Backend geliştirme konusundaki derin bilgi ve tecrübesiyle, İkJet’in veritabanı ve sunucu tarafı işlemlerini yönetiyor. Performans ve güvenlik konularında sürekli iyileştirmeler yapıyor.</p>
+								<div class="social">
+									<a href=""><i class="ri-instagram-fill"></i></a>
+									<a href="https://www.linkedin.com/in/yusuf-kenan-girgin/"><i class="ri-linkedin-box-fill"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+					
+
+				
+
+			</div>
+		</section>
+
+
+		
+		<!-- End Team Section -->
+		
+		<!-- ======= Frequently Asked Questions Section ======= -->
+
+		<section id="faq" class="faq section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Sıkça Sorulan Sorular</h2>
+					<div class="row mb-5">
+						<div class="col-lg-1 col-md-1 col-sm-1"></div>
+						<div class="col-lg-10 col-md-10 col-sm-10">
+							<p>İkJet projemiz hakkında sıkça sorulan soruları burada bulabilirsiniz. Sorularınızı yanıtlayarak, insan kaynakları otomasyon sistemimizin nasıl çalıştığını daha iyi anlamanızı sağlamak istiyoruz.</p>
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					</div>
+					
+				</div>
+
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-10 col-md-10 col-sm-10">
+						<div class="faq-list">
+							<ul>
+								<li data-aos="fade-up" data-aos-delay="100">
+									<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">İkJet nedir ve ne işe yarar? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+									<div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+										<p>
+											İkJet, insan kaynakları yönetimini kolaylaştıran kapsamlı bir otomasyon sistemidir. Çalışan bilgileri, izin talepleri, avans yönetimi ve harcama talepleri gibi işlemleri tek bir platformda yönetmenizi sağlar.
+										</p>
+									</div>
+								</li>
+
+								<li data-aos="fade-up" data-aos-delay="200">
+									<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">İkJet'te izin taleplerini nasıl yönetirim? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+									<div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+										<p>
+											İkJet, izin taleplerini dijital ortamda yönetmenizi sağlar. Kullanıcılar izin taleplerini sistem üzerinden yapabilir, yöneticiler ise bu talepleri hızlı bir şekilde onaylayabilir veya reddedebilir.
+										</p>
+									</div>
+								</li>
+
+								<li data-aos="fade-up" data-aos-delay="300">
+									<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Avans taleplerini nasıl oluşturabilirim? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+									<div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+										<p>
+											Avans talepleri, İkJet sistemi üzerinden kolayca oluşturulabilir. Çalışanlar gerekli bilgileri doldurarak avans talebinde bulunabilir, yöneticiler ise talepleri inceleyip onaylayabilir veya reddedebilir.
+										</p>
+									</div>
+								</li>
+
+								<li data-aos="fade-up" data-aos-delay="400">
+									<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Harcama taleplerini nasıl yönetirim? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+									<div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+										<p>
+											Harcama talepleri, İkJet sistemi aracılığıyla takip edilir ve yönetilir. Çalışanlar harcama taleplerini sisteme girer, yöneticiler ise bu talepleri değerlendirip onaylar veya reddeder.
+										</p>
+									</div>
+								</li>
+
+								<li data-aos="fade-up" data-aos-delay="500">
+									<i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">İkJet sistemi ile ilgili teknik destek nasıl alabilirim? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+									<div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+										<p>
+											İkJet sistemi ile ilgili teknik destek almak için destek ekibimizle iletişime geçebilirsiniz. E-posta veya telefon yoluyla bize ulaşabilir, karşılaştığınız sorunları bildirebilirsiniz.
+										</p>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+				</div>
+				
+
+			</div>
+		</section>
+
+
+
+		<!-- End Frequently Asked Questions Section -->
+		<!-- ======= Contact Section ======= -->
+		
+		<section id="contact" class="contact">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>İletişim</h2>
+					<div class="row mb-5">
+						<div class="col-lg-1 col-md-1 col-sm-1"></div>
+						<div class="col-lg-10 col-md-10 col-sm-10">
+							<p>İkJet projemizle ilgili her türlü soru ve geri bildiriminizi almak için buradayız. İletişim bilgilerini ve formu aşağıda bulabilirsiniz.</p>
+						</div>
+						<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					</div>
+					
+				</div>
+
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-sm-1"></div>
+					<div class="col-lg-5 col-md-5 col-sm-5 d-flex align-items-stretch">
+						<div class="info">
+							<div class="address">
+								<i class="bi bi-geo-alt"></i>
+								<h4>Lokasyon:</h4>
+								<p>Ankara, Türkiye</p>
+							</div>
+
+							<div class="email">
+								<i class="bi bi-envelope"></i>
+								<h4>Email:</h4>
+								<p>info@ikjet.com</p>
+							</div>
+
+							<div class="phone">
+								<i class="bi bi-phone"></i>
+								<h4>Telefon:</h4>
+								<p>+90 312 312 00 00</p>
+							</div>
+							<div class="">
+								<iframe class="w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14566.027148756433!2d32.73650268557298!3d39.87132579040721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d3471a8e2b618d%3A0x73f8bb3f0acf48d!2sBilgeAdam%20Teknoloji%20Ankara!5e0!3m2!1str!2str!4v1723309683270!5m2!1str!2str" width="" height="250px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+							</div>
+							
+						</div>
+
+					</div>
+
+
+					<div class="col-lg-5 col-md-5 col-sm-5 mt-lg-0 d-flex align-items-stretch">
+						<form asp-area="" asp-controller="Home" asp-action="EmailContact" method="post"  class="php-email-form">
+							<div class="row">
+								@if (ViewBag.Message != null)
+								{
+									<div class="alert alert-success" role="alert">
+										@ViewBag.Message
+									</div>
+								}
+								<div class="form-group col-md-6">
+									<label for="name">Adınız</label>
+									<input type="text" name="name" class="form-control" id="name" required>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="email">Email</label>
+									<input type="email" class="form-control" name="email" id="email" required>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="subject">Konu</label>
+								<input type="text" class="form-control" name="subject" id="subject" required>
+							</div>
+							<div class="form-group">
+								<label for="message">Mesaj</label>
+								<textarea class="form-control" name="message" rows="10" required></textarea>
+							</div>
+							<div class="my-3">
+								<div class="loading">Yükleniyor</div>
+								<div class="error-message"></div>
+								<div class="sent-message">Mesajınız gönderildi. Teşekkür ederiz!</div>
+							</div>
+							<div class="text-center"><button type="submit">Mesaj Gönder</button></div>
+						</form>
+					</div>
+
+
+
+					
+				</div>
+
+			</div>
+		</section>
+
+		
+		<!-- End Contact Section -->
+
+	</main><!-- End #main -->
+	<!-- ======= Footer ======= -->
+	<footer id="footer">
+
+	
+
+		
+
+		<div class="container footer-bottom clearfix">
+			<div class="copyright ms-5">
+				&copy; Copyright <strong><span>IkJet</span></strong>. Tüm hakları saklıdır
+			</div>
+			<div class="credits me-5">
+				<!-- All the links in the footer should remain intact. -->
+				<!-- You can delete the links only if you purchased the pro version. -->
+				<!-- Licensing information: https://bootstrapmade.com/license/ -->
+				<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/ -->
+				Designed by <a href="#">IkjetTeam</a>
+			</div>
+
+
+
+		</div>
+	</footer><!-- End Footer -->
+
+	<div id="preloader"></div>
+	<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+	
+
+
+
+	<!-- Vendor JS Files -->
+	<script src="~/assets-front/vendor/aos/aos.js"></script>
+	@* <script src="~/assets-front/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> *@
+	<script src="~/assets-front/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="~/assets-front/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	@* <script src="~/assets-front/vendor/php-email-form/validate.js"></script> *@
+	<script src="~/assets-front/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="~/assets-front/vendor/waypoints/noframework.waypoints.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="~/assets-front/js/main.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+	@if (TempData["Message"] != null)
+	{
+		var message = @Html.Raw(JsonConvert.SerializeObject(TempData["Message"].ToString()));
+		<text>
+			Swal.fire({
+				icon: 'success',
+				title: 'Teşekkürler',
+				text: @message
+															});
+		</text>
+	}
+
+</script>

@@ -1,0 +1,141 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Kullanıcı Güncelle";
+    Layout = "_Layout";
+
+    string layoutPath = "~/Views/Shared/_Layout.cshtml"; // Default layout
+
+    if (User.IsInRole("Personnel"))
+    {
+        layoutPath = "~/Areas/Personnel/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/css/customPersonnelColor.css" />
+
+    }
+    else if (User.IsInRole("HRManager"))
+    {
+        layoutPath = "~/Areas/HRManager/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/css/customHRManagerColor.css" />
+
+    }
+    else if (User.IsInRole("Admin"))
+    {
+        layoutPath = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/css/customAdminColor.css" />
+
+    }
+
+    Layout = layoutPath;
+}
+
+<style>
+    #per-image {
+        width: 200px;
+        border-radius: 20px;
+    }
+
+    .profile-photo {
+        margin: 32px 30px 30px 0;
+        max-width: 250px;
+        max-height: 250px;
+        border-radius: 0.5rem;
+    }
+
+    .file-input label {
+        margin-bottom: 1rem;
+    }
+
+    h5 {
+        color: white;
+    }
+
+</style>
+<div class="d-flex justify-content-center mb-4">
+    <h1 class="pe-3">Profil Düzenle</h1>
+</div>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 justify-content-center">
+        <div class="card bgRenk">
+            <div id="card-header" class="card-header bgRenk d-flex justify-content-around">
+                <div class="align-content-center">
+                    <a class="btn btn-grad" asp-area="" asp-controller="Home" asp-action="Profile">Geri</a>
+                </div>
+                <div class="card-title d-flex justify-content-center">
+                    <img id="per-image" class="object-fit-contain" src="~/images/user/@(string.IsNullOrEmpty(Model.ImageName) ? "default-avatar.png" : Model.ImageName)" alt="resim" />
+                </div>
+                <div class="align-content-center">
+                    <a class="btn btn-grad" asp-area="" asp-controller="User" asp-action="ChangeMyPassword">Şifre Değiştir</a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <form asp-area="" asp-controller="User" asp-action="Update" method="post" enctype="multipart/form-data">
+                            <div class="form-wrapper">
+                                <div class="form-content profile-photo-container">
+                                    <div class="form-group file-input">
+                                        <div>
+                                            <h5>Profil Fotoğrafı</h5>
+                                            <input name="ImageFile" asp-for="ImageFile" type="file" class="form-control" id="imageUpload" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-content">
+                                    <div class="form-group">
+                                        <label for="disableinput">Adres</label>
+                                        <input name="address" asp-for="Address" type="text" class="form-control" placeholder="@Model.Address" id="Address" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="disableinput">Telefon</label>
+                                        <input name="phoneNumber" asp-for="PhoneNumber" type="text" class="form-control" placeholder="@Model.PhoneNumber" id="PhoneNumber" />
+                                    </div>
+
+                                    <div class="form-group d-flex justify-content-end pt-3">
+                                        <button type="submit" class="btn btn-grad ms-2 text-light" id="updateButton" disabled>Güncelle</button>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (ViewBag.ErrorMessage != null)
+                            {
+                                <div class="alert alert-danger mt-3">
+                                    @ViewBag.ErrorMessage
+                                </div>
+                            }
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById('imageUpload').addEventListener('change', function (e) {
+        const [file] = e.target.files;
+        if (file) {
+            document.getElementById('per-image').src = URL.createObjectURL(file);
+        }
+    });
+
+    const addressInput = document.getElementById('Address');
+    const phoneInput = document.getElementById('PhoneNumber');
+    const updateButton = document.getElementById('updateButton');
+
+    function toggleButtonState() {
+        updateButton.disabled = !(
+            addressInput.value.trim() !== '' ||
+            phoneInput.value.trim() !== ''
+        );
+    }
+
+    addressInput.addEventListener('input', toggleButtonState);
+    phoneInput.addEventListener('input', toggleButtonState);
+
+    toggleButtonState();
+</script>
+
+

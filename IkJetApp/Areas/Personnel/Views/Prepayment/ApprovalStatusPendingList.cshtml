@@ -1,0 +1,77 @@
+﻿@using IkJetApp.Areas.Personnel.Models.Prepayment
+@model List<PrepaymentViewModel>
+
+@{
+    ViewData["Title"] = "Onay Bekleyen Avans Talepleri";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Avans Talebi Oluştur</a>
+</p>
+<link rel="stylesheet" href="~/css/customTable.css" />
+<div class="table-container theme-secondary">
+<table 
+    <thead>
+        <tr>
+            <th>Avans Miktarı</th>
+            <th>Para Birimi</th>
+            <th>Açıklama</th>
+            <th>Avans Tipi</th>
+            <th>Onay Durumu</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Amount</td>
+                <td>@item.CurrencyTypeDisplay</td>
+                <td>@item.Description</td>
+                <td>@item.PrepaymentTypeDisplay</td>
+                <td>@item.ApprovalStatusDisplay</td>
+                <td>
+                    <a asp-area="Personnel" asp-controller="Prepayment" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Düzenle</a>
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete('@Url.Action("Delete", "Prepayment", new { area = "Personnel", id = item.Id })')">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+<!-- Sweet Alert -->
+<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+
+<script>
+    function confirmDelete(deleteUrl) {
+        swal({
+            title: "Emin misiniz?",
+            text: "Bu işlemi geri alamazsınız!",
+            icon: "warning",
+            buttons: {
+                cancel: {
+                    text: "Vazgeç",
+                    value: null,
+                    visible: true,
+                    className: "btn btn-secondary",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: "Evet, sil!",
+                    value: true,
+                    visible: true,
+                    className: "btn btn-danger",
+                    closeModal: true
+                }
+            }
+        }).then((isConfirm) => {
+            if (isConfirm) {
+                window.location.href = deleteUrl;
+            }
+        });
+    }
+</script>

@@ -1,0 +1,107 @@
+﻿@using IkJetApp.Areas.Admin.Models.Company
+@model CompanyViewModel
+
+@{
+    ViewData["Title"] = "Yeni Şirket Oluştur";
+}
+<link rel="stylesheet" href="~/css/customFormAdmin.css" />
+<h2>Yeni Şirket Oluştur</h2>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data" class="styled-form">
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div style="background-color:brown; color:white;" class="alert">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+    <div class="form-group">
+        <label asp-for="CompanyName" class="control-label">Şirket Adı</label>
+        <input asp-for="CompanyName" class="form-control" />
+        <span asp-validation-for="CompanyName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CompanyTitle" class="control-label">Şirket Ünvanı</label>
+        <input asp-for="CompanyTitle" class="form-control" />
+        <span asp-validation-for="CompanyTitle" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="MersisNumber" class="control-label">MERSİS Numarası</label>
+        <input asp-for="MersisNumber" type="number" class="form-control" />
+        <span asp-validation-for="MersisNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TaxNumber" class="control-label">Vergi Numarası</label>
+        <input asp-for="TaxNumber" type="number" class="form-control" />
+        <span asp-validation-for="TaxNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TaxOffice" class="control-label">Vergi Dairesi</label>
+        <input asp-for="TaxOffice" class="form-control" />
+        <span asp-validation-for="TaxOffice" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PhoneNumber" class="control-label">Telefon Numarası</label>
+        <input asp-for="PhoneNumber" type="number" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="control-label">Adres</label>
+        <textarea asp-for="Address" class="form-control"></textarea>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="control-label">E-posta</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EmployeeCount" class="control-label">Çalışan Sayısı</label>
+        <input asp-for="EmployeeCount" class="form-control" type="number" />
+        <span asp-validation-for="EmployeeCount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FoundationOfYear" class="control-label">Kuruluş Yılı</label>
+        <input asp-for="FoundationOfYear" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="FoundationOfYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConractStartDate" class="control-label">Sözleşme Başlangıç Tarihi</label>
+        <input asp-for="ConractStartDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="ConractStartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ConractEndDate" class="control-label">Sözleşme Bitiş Tarihi</label>
+        <input asp-for="ConractEndDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="ConractEndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ImageFile" class="control-label">Şirket Logosu Yükle</label>
+        <input asp-for="ImageFile" class="form-control-file" type="file" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+    </div>
+
+    <div class="button-container">
+        <input type="submit" value="Kaydet" class="btn btn-approve" />
+        <a asp-action="List" class=" btn btn-secondary">İptal</a>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,133 @@
+﻿@using IkJetApp.Areas.Personnel.Models.Expense
+@using IkJetApp.Enums
+@using Newtonsoft.Json
+
+@model List<ExpenseViewModel>
+
+@{
+    ViewData["Title"] = "Harcama Talepleri";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Harcama Talebi Oluştur</a>
+</p>
+<link rel="stylesheet" href="~/css/customTable.css" />
+<div class="table-container theme-secondary">
+<table >
+    <thead>
+        <tr>
+            <th>Harcama Tipi</th>
+            <th>Miktar</th>
+            <th>Para birimi</th>
+            <th>Fatura</th>
+            <th>Onay Durumu</th>
+            <th>İşlem</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ExpenseTypeDisplay</td>
+                <td>@item.Amount</td>
+                <td>@item.CurrencyTypeDisplay</td>
+                <td>
+                    <button class="btn btn-link p-0" onclick="showImage('@(string.IsNullOrEmpty(item.ImageName) ? "default-expense.png" : item.ImageName)')">
+                        <img src="~/images/expense/@(string.IsNullOrEmpty(item.ImageName) ? "default-expense.png" : item.ImageName)" alt="resim" style="width: 75px; border-radius: 5px;" class="object-fit-contain" />
+                    </button>
+                </td>
+                <td>@item.ApprovalStatusDisplay</td>
+                <td>
+                    <a asp-area="Personnel" asp-controller="Expense" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning @(item.ApprovalStatus != ApprovalStatus.Pending ? "disabled" : "")">Düzenle</a>
+                    <button type="button" class="btn btn-danger" @(item.ApprovalStatus != ApprovalStatus.Pending ? "disabled" : "") onclick="confirmDelete('@Url.Action("Delete", "Expense", new { area = "Personnel", id = item.Id })')">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+<!-- Sweet Alert -->
+<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function confirmDelete(deleteUrl) {
+        swal({
+            title: "Emin misiniz?",
+            text: "Bu işlemi geri alamazsınız!",
+            icon: "warning",
+            buttons: {
+                cancel: {
+                    text: "Vazgeç",
+                    value: null,
+                    visible: true,
+                    className: "btn btn-secondary",
+                    closeModal: true,
+                },
+                confirm: {
+                    text: "Evet, sil!",
+                    value: true,
+                    visible: true,
+                    className: "btn btn-danger",
+                    closeModal: true
+                }
+            }
+        }).then((isConfirm) => {
+            if (isConfirm) {
+                window.location.href = deleteUrl;
+            }
+        });
+    }
+
+
+    function showImage(imageName) {
+        var imagePath = '@Url.Content("~/images/expense/")' + imageName;
+        var downloadLink = '@Url.Content("~/images/expense/")' + imageName;
+
+        swal({
+            content: {
+                element: "img",
+                attributes: {
+                    src: imagePath,
+                    alt: "resim",
+                    style: "max-width: 100%; border-radius: 5px;"
+                },
+            },
+            buttons: {
+                cancel: "Kapat",
+                download: {
+                    text: "Dosyayı İndir",
+                    value: "download",
+                    className: "btn-download",
+                },
+            },
+        }).then((value) => {
+            if (value === "download") {
+
+                const a = document.createElement('a');
+                a.href = downloadLink;
+                a.download = imageName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        });
+    }
+
+    @if (TempData["Message"] != null)
+    {
+        var Message = @Html.Raw(JsonConvert.SerializeObject(TempData["Message"].ToString()));
+        <text>
+            Swal.fire({
+                icon: 'info',
+                title: 'Bilgi',
+                text: @Message
+                            });
+        </text>
+    }
+
+
+</script>

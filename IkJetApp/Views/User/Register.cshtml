@@ -1,0 +1,276 @@
+﻿@using IkJetApp.Areas.Admin.Models.Company
+@model UserViewModel
+
+@{
+    ViewData["Title"] = "Kullanıcı Ekle";
+    Layout = "_Layout";
+
+    string layoutPath = "~/Views/Shared/_Layout.cshtml"; // Default layout
+
+    if (User.IsInRole("HRManager"))
+    {
+        layoutPath = "~/Areas/HRManager/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/css/customHRManagerColor.css" />
+    }
+    else if (User.IsInRole("Admin"))
+    {
+        layoutPath = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/css/customAdminColor.css" />
+        <style>
+            .bgRenk {
+                background: #373A40;
+            }
+        </style>
+    }
+
+    Layout = layoutPath;
+}
+
+<style>
+    #per-image {
+        width: 200px;
+        border-radius: 20px;
+    }
+
+    .profile-photo {
+        margin: 32px 30px 30px 0;
+        max-width: 250px;
+        max-height: 250px;
+        border-radius: 0.5rem;
+    }
+
+    .file-input label {
+        margin-bottom: 1rem;
+    }
+
+    h5 {
+        color: white;
+    }
+
+    
+
+</style>
+
+<div class="d-flex justify-content-center mb-4 ">
+    @if (User.IsInRole("Admin"))
+    {
+        <h1 class="pe-3">
+            İK Yöneticisi Ekle
+        </h1>
+    }
+    else
+    {
+        <h1 class="pe-3">
+            Personel Ekle
+        </h1>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 justify-content-center">
+        <div class="card bgRenk">
+            <div class="card-header bgRenk d-flex justify-content-around ">
+                <div class="align-content-center">
+                    <img id="imagePreview" class="profile-photo" src="~/assets/img/placeholder.png" alt="Profil Fotoğrafı" />
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <form asp-area="" asp-controller="User" asp-action="Register" method="post" enctype="multipart/form-data">
+                            <div class="form-wrapper">
+                                @if (ViewBag.ErrorMessage != null)
+                                {
+                                    <div class="alert alert-danger mt-3">
+                                        @ViewBag.ErrorMessage
+                                    </div>
+                                }
+                                <div class="row pt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="BirthDate">Doğum Tarihi*</label>
+                                            <input name="BirthDate" asp-for="BirthDate" type="date" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="HireDate">İşe Başlama Tarihi*</label>
+                                            <input name="HireDate" asp-for="HireDate" type="date" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group file-input pt-3">
+                                    <label for="ImageFile">Profil Fotoğrafı</label>
+                                    <input name="ImageFile" asp-for="ImageFile" type="file" class="form-control" id="imageUpload" />
+                                </div>
+
+                                <div class="form-group pt-3">
+                                    <label for="Address">Adres*</label>
+                                    <input name="Address" asp-for="Address" type="text" class="form-control" placeholder="Adres" />
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="ConfirmationEmail">E-mail Doğrulama Adresi*</label>
+                                            <input name="ConfirmationEmail" asp-for="ConfirmationEmail" type="email" class="form-control" placeholder="E-mail doğrulama adresi" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="PhoneNumber">Telefon Numarası</label>
+                                            <input name="PhoneNumber" asp-for="PhoneNumber" type="text" class="form-control" placeholder="Telefon Numarası" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row pt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="FirstName">İsim*</label>
+                                            <input name="FirstName" asp-for="FirstName" type="text" class="form-control" placeholder="İsim" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="SecondName">İkinci İsim</label>
+                                            <input name="SecondName" asp-for="SecondName" type="text" class="form-control" placeholder="İkinci İsim" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="LastName">Soyisim*</label>
+                                            <input name="LastName" asp-for="LastName" type="text" class="form-control" placeholder="Soyisim" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="SecondLastName">İkinci Soyisim</label>
+                                            <input name="SecondLastName" asp-for="SecondLastName" type="text" class="form-control" placeholder="İkinci Soyisim" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="BirthPlace">Doğum Yeri*</label>
+                                            <input name="BirthPlace" asp-for="BirthPlace" type="text" class="form-control" placeholder="Doğum Yeri" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="TCIdentityNumber">T.C. Kimlik Numarası*</label>
+                                            <input name="TCIdentityNumber" asp-for="TCIdentityNumber" type="text" class="form-control" placeholder="T.C. Kimlik Numarası" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="row pt-3">
+                                   
+
+                                 
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="CompanyName">Şirket Adı*</label>
+                                            @if (User.IsInRole("Admin"))
+                                            {
+                                                <select name="id" class="form-control">
+                                                    <option value="">Şirket seçiniz</option>
+                                                    @if (ViewData["CompanyList"] is List<CompanyViewModel> companies && companies.Any())
+                                                    {
+                                                        @foreach (var company in companies)
+                                                        {
+                                                            <option value="@company.Id">@company.CompanyName</option>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <option disabled>Şirketler yüklenemedi veya mevcut değil</option>
+                                                    }
+                                                </select>
+                                            }
+                                            else if (User.IsInRole("HRManager"))
+                                            {
+                                                <input name="CompanyName" asp-for="CompanyName" type="text" class="form-control" value="@Model.CompanyName" readonly />
+                                            }
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Department">Departman*</label>
+                                            @if (User.IsInRole("Admin"))
+                                            {
+                                                <input name="Department" asp-for="Department" type="text" class="form-control" value="İnsan Kaynakları" readonly />
+                                            }
+                                            else if (User.IsInRole("HRManager"))
+                                            {
+                                                <input name="Department" asp-for="Department" type="text" class="form-control" placeholder="Departman" />
+                                            }
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-3">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="JobTitle">Ünvanı*</label>
+                                            <input name="JobTitle" asp-for="JobTitle" type="text" class="form-control" placeholder="Ünvanı" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="Salary">Aylık Maaş (TL)*</label>
+                                            <input name="Salary" asp-for="Salary" type="number" class="form-control" placeholder="Aylık Maaş" min="0" step="0.01" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group d-flex justify-content-end pt-3">
+                                    <button type="submit" class="btn btn-grad ms-2 text-light">Kaydet</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/assets/js/core/jquery-3.7.1.min.js"></script>
+<script src="~/assets/js/core/popper.min.js"></script>
+<script src="~/assets/js/core/bootstrap.min.js"></script>
+
+@section Scripts {
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            reader.onload = function () {
+                document.getElementById('imagePreview').src = reader.result;
+            }
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

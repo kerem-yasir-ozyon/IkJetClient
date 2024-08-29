@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>IkJet - İnsan Kaynakları</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+          name="viewport" />
+    <link rel="icon"
+          href="~/assets/img/kaiadmin/favicon.ico"
+          type="image/x-icon" />
+
+
+    @* boostrapten icon cekebilmek icin ekledim *@
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+
+    <!-- Fonts and icons -->
+    <script src="~/assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+                families: [
+                    "Font Awesome 5 Solid",
+                    "Font Awesome 5 Regular",
+                    "Font Awesome 5 Brands",
+                    "simple-line-icons",
+                ],
+                urls: ["/assets/css/fonts.min.css"],
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            },
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/css/plugins.min.css" />
+    <link rel="stylesheet" href="~/assets/css/kaiadmin.min.css" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="~/assets/css/demo.css" />
+    <link rel="stylesheet" href="~/css/customAdminColor.css" />
+    <style>
+        #anaLogo {
+            width: 120px;
+            height: 60px;
+        }
+
+         p{
+            color:white;
+        }
+        i{
+            color:white;
+        }
+
+        .bgRenkNav {
+            background-image: linear-gradient(to right, #373a40, #42464d, #4e525a, #5a5e68, #666b76, #666b76, #666b76, #666b76, #5a5e68, #4e525a, #42464d, #373a40);
+        }
+
+        span {
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+
+
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar bgRenk" >
+            <div class="sidebar-logo ">
+                <!-- Logo Header -->
+                <div class="logo-header">
+
+                    
+                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="logo">
+                            <img src="~/assets/img/kaiadmin/ikjetlogo.svg"
+                                 alt="navbar brand"
+                                 class="navbar-brand"
+                                 id="anaLogo" />
+                        </a>
+                    
+
+
+                    <div class="nav-toggle">
+                        <button class="btn btn-toggle toggle-sidebar">
+                            <i class="gg-menu-right"></i>
+                        </button>
+                        <button class="btn btn-toggle sidenav-toggler">
+                            <i class="gg-menu-left"></i>
+                        </button>
+                    </div>
+                    <button class="topbar-toggler more">
+                        <i class="gg-more-vertical-alt"></i>
+                    </button>
+                </div>
+                <!-- End Logo Header -->
+            </div>
+            <div class="sidebar-wrapper scrollbar scrollbar-inner">
+                <div class="sidebar-content">
+                    <ul class="nav nav-secondary">
+                        <li class="nav-item ">
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="fas fa-home"></i>
+                                <p>Ana Sayfa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a asp-area="" asp-controller="Home" asp-action="Profile"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="fa fa-user-circle"></i>
+                                <p>Profil</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a asp-area="Admin" asp-controller="Company" asp-action="Create"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="bi bi-building-add"></i>
+                                <p>Şirket Ekle</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a asp-area="Admin" asp-controller="Company" asp-action="List"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="bi bi-buildings"></i>
+                                <p>Şirket Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a asp-area="" asp-controller="User" asp-action="Register"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="bi bi-person-plus-fill"></i>
+                                <p>Ik Yöneticisi Ekle</p>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a asp-area="Admin" asp-controller="Company" asp-action="AllHRManagers"
+                               class="collapsed"
+                               aria-expanded="false">
+                                <i class="bi bi-person-lines-fill"></i>
+                                <p>Ik Yönetici Listesi</p>
+                            </a>
+                        </li>
+
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="main-panel">
+            <div class="main-header bgRenkNav">
+                <div class="main-header-logo">
+                    <!-- Logo Header -->
+                    <div class="logo-header">
+                        <a class="logo">
+                            <img src="~/assets/img/kaiadmin/logo_light.svg"
+                                 alt="navbar brand"
+                                 class="navbar-brand"
+                                 height="20" />
+                        </a>
+                        <div class="nav-toggle">
+                            <button class="btn btn-toggle toggle-sidebar">
+                                <i class="gg-menu-right"></i>
+                            </button>
+                            <button class="btn btn-toggle sidenav-toggler">
+                                <i class="gg-menu-left"></i>
+                            </button>
+                        </div>
+                        <button class="topbar-toggler more">
+                            <i class="gg-more-vertical-alt"></i>
+                        </button>
+                    </div>
+                    <!-- End Logo Header -->
+                </div>
+                @await Component.InvokeAsync("User")
+            </div>
+
+            <div class="container">
+                <div class="page-inner">
+
+                    <div class="page-category">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+    <!--   Core JS Files   -->
+    <script src="~/assets/js/core/jquery-3.7.1.min.js"></script>
+    <script src="~/assets/js/core/popper.min.js"></script>
+    <script src="~/assets/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="~/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="~/assets/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="~/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="~/assets/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="~/assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="~/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="~/assets/js/plugin/jsvectormap/jsvectormap.min.js"></script>
+    <script src="~/assets/js/plugin/jsvectormap/world.js"></script>
+
+    <!-- Google Maps Plugin -->
+    <script src="~/assets/js/plugin/gmaps/gmaps.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="~/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="~/assets/js/kaiadmin.min.js"></script>
+
+    @*     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script> *@
+    @await RenderSectionAsync("Scripts", required: false)
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const allMenus = document.querySelectorAll('.nav-item .collapse');
+
+
+            allMenus.forEach(menu => {
+                const menuId = menu.id;
+                const isOpen = localStorage.getItem(menuId);
+
+                if (isOpen === 'true') {
+                    menu.classList.add('show');
+                } else {
+                    menu.classList.remove('show');
+                }
+            });
+
+
+            allMenus.forEach(menu => {
+                menu.addEventListener('shown.bs.collapse', function () {
+                    localStorage.setItem(menu.id, 'true');
+                });
+                menu.addEventListener('hidden.bs.collapse', function () {
+                    localStorage.setItem(menu.id, 'false');
+                });
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>

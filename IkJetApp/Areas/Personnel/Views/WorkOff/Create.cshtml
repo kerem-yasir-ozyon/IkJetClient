@@ -1,0 +1,56 @@
+﻿@using IkJetApp.Areas.Personnel.Models.WorkOff
+@using IkJetApp.Enums
+@using IkJetApp.Helpers
+@using Newtonsoft.Json
+@model WorkOffViewModel
+<link rel="stylesheet" href="~/css/customForm.css" />
+
+<h1>Yeni İzin Talebi</h1>
+
+<form id="formWorkOffCreate" asp-area="Personnel" asp-controller="WorkOff" asp-action="Create" method="post" class="styled-form">
+    <div class="form-group">
+        <label class="control-label">İzin tipi</label>
+        <select name="workOfType" asp-for="@Model.WorkOfType" class="form-control">
+            <option value="">İzin tipi seçiniz</option>
+            @foreach (var workOfType in Enum.GetValues(typeof(WorkOfType)).Cast<WorkOfType>())
+            {
+                <option value="@workOfType">@workOfType.GetDisplayName()</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.StartDate" class="control-label">Başlangıç Tarihi</label>
+        <input asp-for="@Model.StartDate" name="startDate" class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.EndDate" class="control-label">Bitiş Tarihi</label>
+        <input asp-for="@Model.EndDate" name="endDate" class="form-control" type="date" />
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.RequestedLeaveDay" class="control-label">Gün Sayısı</label>
+        <input asp-for="@Model.RequestedLeaveDay" name="requestedLeaveDay" class="form-control" type="number" readonly />
+    </div>
+    <div class="button-container">
+        <button type="submit" class="btn-approve btn btn-success">Ekle</button>
+    </div>
+</form>
+
+<script src="~/js/clientCustomJs/dateFunction.js"></script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    @if (TempData["WorkOffMessage"] != null)
+    {
+        var workOffMessage = @Html.Raw(JsonConvert.SerializeObject(TempData["WorkOffMessage"].ToString()));
+        <text>
+            Swal.fire({
+                icon: 'info',
+                title: 'Bilgi',
+                text: @workOffMessage
+                                            });
+        </text>
+    }
+</script>

@@ -1,0 +1,79 @@
+﻿@using IkJetApp.Areas.Personnel.Models.Expense
+@model List<ExpenseViewModel>
+
+@{
+    ViewData["Title"] = "İptal Edilen Harcama Talepleri";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Harcama Talebi Oluştur</a>
+</p>
+<link rel="stylesheet" href="~/css/customTable.css" />
+<div class="table-container theme-secondary">
+<table >
+    <thead>
+        <tr>
+            <th>Harcama Tipi</th>
+            <th>Miktar</th>
+            <th>Para birimi</th>
+            <th>Fatura</th>
+            <th>Onay Durumu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ExpenseTypeDisplay</td>
+                <td>@item.Amount</td>
+                <td>@item.CurrencyTypeDisplay</td>
+                <td>
+                    <button class="btn btn-link p-0" onclick="showImage('@(string.IsNullOrEmpty(item.ImageName) ? "default-expense.png" : item.ImageName)')">
+                        <img src="~/images/expense/@(string.IsNullOrEmpty(item.ImageName) ? "default-expense.png" : item.ImageName)" alt="resim" style="width: 75px; border-radius: 5px;" class="object-fit-contain" />
+                    </button>
+                </td>
+                <td>@item.ApprovalStatusDisplay</td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+<script>
+    function showImage(imageName) {
+        var imagePath = '@Url.Content("~/images/expense/")' + imageName;
+        var downloadLink = '@Url.Content("~/images/expense/")' + imageName;
+
+        swal({
+            content: {
+                element: "img",
+                attributes: {
+                    src: imagePath,
+                    alt: "resim",
+                    style: "max-width: 100%; border-radius: 5px;"
+                },
+            },
+            buttons: {
+                cancel: "Kapat",
+                download: {
+                    text: "Dosyayı İndir",
+                    value: "download",
+                    className: "btn-download",
+                },
+            },
+        }).then((value) => {
+            if (value === "download") {
+
+                const a = document.createElement('a');
+                a.href = downloadLink;
+                a.download = imageName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }
+        });
+    }
+</script>

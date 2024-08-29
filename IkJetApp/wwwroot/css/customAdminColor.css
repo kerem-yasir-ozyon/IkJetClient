@@ -1,0 +1,145 @@
+﻿body {
+    background-color: #a8abb2 !important;
+}
+.bgRenk {
+    background: #373A40 !important;
+}
+
+.btn-grad {
+    background-image: linear-gradient(to left bottom, #373a40, #42464d, #4e525a, #5a5e68, #666b76, #666b76, #666b76, #666b76, #5a5e68, #4e525a, #42464d, #373a40) !important;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 5px 5px grey;
+    border-radius: 10px;
+    display: block;
+}
+
+    .btn-grad:hover {
+        background-position: right center;
+        color: #fff;
+        text-decoration: none;
+    }
+h1 {
+    color: #373A40;
+}
+    .form-group{
+        color:white;
+    }
+
+label {
+    color: white !important;
+}
+.dropdown-menu {
+    --bs-dropdown-bg: #373A40 !important;
+}
+h4{
+    color:white !important;
+}
+.text-muted {
+    color: white !important;
+}
+
+body {
+    background-color: #a8abb2;
+}
+
+.login-dark {
+    height: 100vh;
+}
+
+    .login-dark form {
+        max-width: 700px;
+        width: 90%;
+        background-color: #373A40;
+        padding: 30px;
+        border-radius: 4px;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: #fff;
+        box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .login-dark .logo {
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+        .login-dark .logo img {
+            max-width: 150px;
+        }
+
+    .login-dark .illustration {
+        font-size: 80px;
+        color: #b874ff;
+        margin-bottom: 5px;
+    }
+
+    .login-dark form .form-control {
+        background: none;
+        border: none;
+        border-bottom: 1px solid #434a52;
+        border-radius: 0;
+        box-shadow: none;
+        outline: none;
+        color: inherit;
+    }
+
+    .login-dark form .btn-primary {
+        background: #214a80;
+        border: none;
+        border-radius: 4px;
+        padding: 10px;
+        box-shadow: none;
+        margin-top: 20px;
+        text-shadow: none;
+        outline: none;
+    }
+
+    .login-dark form .forgot {
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        color: #6f7a85;
+        opacity: 0.9;
+        text-decoration: none;
+    }
+
+    .login-dark form .btn-primary:active {
+        transform: translateY(1px);
+    }
+
+.btn-grad {
+    background-image: linear-gradient(to right, #0f2167, #053d83, #00589d, #0975b5, #2592cb, #2592cb, #2592cb, #2592cb, #0975b5, #00589d, #053d83, #0f2167);
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 5px 5px grey;
+    border-radius: 10px;
+    display: block;
+}
+
+    .btn-grad:hover {
+        background-position: right center;
+        color: #fff;
+        text-decoration: none;
+    }
+
+.password-wrapper {
+    position: relative;
+}
+
+    .password-wrapper .toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }

@@ -1,0 +1,44 @@
+﻿@using IkJetApp.Areas.Personnel.Models.Prepayment
+@using IkJetApp.Enums
+@using IkJetApp.Helpers
+@model PrepaymentViewModel
+<link rel="stylesheet" href="~/css/customForm.css" />
+
+<h1>Avans Talebi Düzenleme</h1>
+
+<form id="formPrepaymentEdit" asp-area="Personnel" asp-controller="Prepayment" asp-action="Edit" method="post" class="styled-form">
+    <div class="form-group">
+        <label class="control-label">Tutar</label>
+        <input asp-for="Amount" name="amount" class="form-control" placeholder="Tutar giriniz" />
+    </div>
+    <div class="form-group">
+        <label class="control-label">Para birimi</label>
+        <select name="currencyType" asp-for="@Model.CurrencyType" class="form-control">
+            <option value="">Para birimi seçiniz</option>
+            @foreach (var currencyType in Enum.GetValues(typeof(CurrencyType)).Cast<CurrencyType>())
+            {
+                <option value="@currencyType">@currencyType.GetDisplayName()</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Açıklama</label>
+        <textarea asp-for="Description" name="description" class="form-control" placeholder="Açıklama giriniz"></textarea>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Avans Türü</label>
+        <select name="prepaymentType" asp-for="@Model.PrepaymentType" class="form-control">
+            <option value="">Avans türünü seçiniz</option>
+            @foreach (var prepaymentType in Enum.GetValues(typeof(PrepaymentType)).Cast<PrepaymentType>())
+            {
+                <option value="@prepaymentType">@prepaymentType.GetDisplayName()</option>
+            }
+        </select>
+    </div>
+    <div class="button-container">
+        <button type="submit" class="btn-approve btn btn-primary">Düzenle</button>
+        <a asp-area="Personnel" asp-controller="Prepayment" asp-action="ApprovalStatusPendingList" class="btn-approve btn btn-warning">Geri</a>
+    </div>
+</form>
+
+<script src="~/js/clientCustomJs/submitButonAlert.js"></script>

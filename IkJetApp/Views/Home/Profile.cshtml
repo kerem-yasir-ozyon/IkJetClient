@@ -1,0 +1,148 @@
+﻿@using Newtonsoft.Json
+@model UserViewModel
+@{
+    string layoutPath = "~/Views/Shared/_Layout.cshtml"; // Default layout
+
+    if (User.IsInRole("Personnel"))
+    {
+        layoutPath = "~/Areas/Personnel/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/css/customPersonnelColor.css" />
+
+    }
+    else if (User.IsInRole("HRManager"))
+    {
+        layoutPath = "~/Areas/HRManager/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/css/customHRManagerColor.css" />
+
+    }
+    else if (User.IsInRole("Admin"))
+    {
+        layoutPath = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+        <link rel="stylesheet" href="~/css/customAdminColor.css" />
+
+    }
+
+    Layout = layoutPath;
+}
+<style>
+    #per-image {
+        width: 200px;
+        border-radius: 20px;
+    }
+
+
+</style>
+<div class="d-flex justify-content-center mb-4 ">
+    <h1 class="pe-5">
+        Profil
+    </h1>
+</div>
+<div class="row ">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 justify-content-center">
+        <div class="card bgRenk">
+            <div id="card-header" class="card-header  bgRenk d-flex justify-content-around ">
+                <div class="align-content-center">
+                    <a class="btn btn-grad" asp-area="" asp-controller="Home" asp-action="Detail">Detay</a>
+                </div>
+                <div class="card-title d-flex justify-content-center">
+                    <img id="per-image" class="object-fit-contain"  <img src="~/images/user/@(string.IsNullOrEmpty(Model.ImageName) ? "default-avatar.png" : Model.ImageName)" alt="resim" />
+                </div>
+                <div class="align-content-center">
+                    <a class="btn btn-grad" asp-area="" asp-controller="User" asp-action="Update">Düzenle</a>
+                </div>
+            </div>
+            <div class="card-body justify-content-center">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 ">
+
+                        <div class="form-group">
+                            <label for="disableinput">İSİM</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.FirstName"
+                                   disabled />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disableinput">SOYİSİM</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.LastName"
+                                   disabled />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disableinput">EMAİL</label>
+                            <input type="email"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.Email"
+                                   disabled />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disableinput">TC Kimlik No</label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.TCIdentityNumber"
+                                   disabled />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disableinput">ADRES</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.Address"
+                                   disabled />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disableinput">DEPARTMAN</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.Department"
+                                   disabled />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disableinput">MESLEK</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.JobTitle"
+                                   disabled />
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    @if (TempData["Message"] != null)
+    {
+        var message = @Html.Raw(JsonConvert.SerializeObject(TempData["Message"].ToString()));
+        <text>
+            Swal.fire({
+                icon: 'info',
+                title: 'Bilgi',
+                text: @message
+                            });
+        </text>
+    }
+</script>

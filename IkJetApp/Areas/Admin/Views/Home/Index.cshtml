@@ -1,0 +1,147 @@
+﻿@using IkJetApp.Models
+@using Newtonsoft.Json
+@model UserViewModel
+@{
+    Layout = "_Layout";
+}
+
+
+@{
+    var Message = ViewBag.Message;
+}
+
+
+
+
+<link rel="stylesheet" href="~/css/customAdminColor.css" />
+<style>
+    #per-image {
+        border-radius: 20px;
+        width: 250px;
+        height: 200px;
+    }
+
+    .sirketLogo {
+        width: 220px;
+    }
+</style>
+
+
+
+
+
+
+<div class="row ">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8 justify-content-center">
+        <div class="card bgRenk">
+
+            <div class="card-header bgRenk d-flex justify-content-around ">
+
+                <div class="card-title d-flex justify-content-center sirketLogo">
+                    <img id="per-image" class=""  <img src="~/assets/img/kaiadmin/ikjetlogo.svg" alt="resim" />
+                </div>
+
+            </div>
+            <div class="card-body justify-content-center">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 ">
+
+                        <div class="form-group">
+                            <label for="disableinput">ŞİRKET ADI</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.CompanyName"
+                                   disabled />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="disableinput">DEPARTMAN</label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.Department"
+                                   disabled />
+                        </div>
+
+                       
+
+                    </div>
+                    <div class="col-md-6 col-lg-6 ">
+
+
+
+                        <div class="form-group">
+                            <label for="disableinput">ADRES</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.Address"
+                                   disabled />
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="disableinput">TELEFON</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="disableinput"
+                                   placeholder="@Model.PhoneNumber"
+                                   disabled />
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+@if (!string.IsNullOrEmpty(Message))
+{
+    <script>
+        window.onload = function () {
+            swal({
+                title: 'Tebrikler',
+                text: '@Html.Raw(Message)',
+                icon: 'success',
+                buttons: {
+                    confirm: {
+                        className: 'btn btn-success',
+                    },
+                },
+            });
+        };
+    </script>
+}
+
+
+<!-- Sweet Alert -->
+<script src="../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    @if (TempData["Message"] != null)
+    {
+        var message = @Html.Raw(JsonConvert.SerializeObject(TempData["Message"].ToString()));
+        <text>
+            Swal.fire({
+                icon: 'info',
+                title: 'Bilgi',
+                text: @message
+                                            });
+        </text>
+    }
+</script>
